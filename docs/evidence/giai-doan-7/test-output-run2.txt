@@ -1,0 +1,81 @@
+﻿pnpm.exe : $ pnpm -r test
+At C:\Users\LDN\AppData\Local\pnpm\bin\pnpm.ps1:14 char:3
++   & "$basedir/../global/v11/1064-1a02ee87656/node_modules/@pnpm/exe/p ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ($ pnpm -r test:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Scope: 3 of 4 workspace projects
+packages/shared test$ vitest run
+packages/shared test: [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90mD:/Learning_With_HCMUS/SSG/packages/shared[39m
+packages/shared test:  [32mâœ“[39m src/__tests__/shared.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+packages/shared test: [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+packages/shared test: [2m      Tests [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+packages/shared test: [2m   Start at [22m 00:43:27
+packages/shared test: [2m   Duration [22m 770ms[2m (transform 85ms, setup 0ms, collect 247ms, tests 18ms, environment 0ms, prepare 227ms)[22m
+packages/shared test: Done
+apps/server test$ vitest run
+apps/server test: [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90mD:/Learning_With_HCMUS/SSG/apps/server[39m
+apps/server test: [90mstdout[2m | src/__tests__/ai-chat-and-providers.test.ts[2m > [22m[2mPhase 7 Verification: Multi-Provider AI, Grounding Tools, Streaming, Quotas & Safety
+apps/server test: [22m[39mđŸ”Œ NgÆ°á»i dĂ¹ng an_nguyen_khtn Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: kmWkyuSw1diUSS7cAAAA)
+apps/server test: [90mstdout[2m | src/__tests__/realtime-and-operations.test.ts[2m > [22m[2mPhase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog[2m > [22m[2m1.1. HAI USER ONLINE: User A nháº­n thĂ´ng bĂ¡o cá»§a A, KHĂ”NG nháº­n cá»§a B; badge Ä‘áº¿m chĂ­nh xĂ¡c
+apps/server test: [22m[39mđŸ”Œ NgÆ°á»i dĂ¹ng an_nguyen_khtn Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: lw0z1ssRZ2CoZYebAAAA)
+apps/server test: [90mstdout[2m | src/__tests__/realtime-and-operations.test.ts[2m > [22m[2mPhase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog[2m > [22m[2m1.1. HAI USER ONLINE: User A nháº­n thĂ´ng bĂ¡o cá»§a A, KHĂ”NG nháº­n cá»§a B; badge Ä‘áº¿m chĂ­nh xĂ¡c
+apps/server test: [22m[39mđŸ”Œ NgÆ°á»i dĂ¹ng bao_tran_khtn Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: Q-P3dbqRd-hj82WxAAAB)
+apps/server test:  [32mâœ“[39m src/__tests__/dynamic-fields-and-revisions.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 438[2mms[22m[39m
+apps/server test: [90mstdout[2m | src/__tests__/realtime-and-operations.test.ts[2m > [22m[2mPhase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog[2m > [22m[2m1.2. REVIEW PENDING KHĂ”NG PHĂT VĂ€O PUBLIC ROOM: Public room place:<id> khĂ´ng nháº­n event chá»©a ná»™i dung pending; sau khi duyá»‡t má»›i cĂ³ event
+apps/server test: [22m[39mđŸ”Œ KhĂ¡ch Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: P9nBvYiKr5DLNmhIAAAC)
+apps/server test: [90mstdout[2m | src/__tests__/auth-and-admin.test.ts[2m > [22m[2mPhase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation[2m > [22m[2m1.1. ÄÄƒng kĂ½ tĂ i khoáº£n má»›i -> táº¡o email verification token trong database
+apps/server test: [22m[39mđŸ“§ ÄĂ£ gá»­i email tá»›i student_lifecycle_1789753413033@hcmus.edu.vn (Message ID: <354927fe-8eb0-7eb2-d9a2-01ef747baece@ssg.edu.vn>)
+apps/server test: [90mstdout[2m | src/__tests__/auth-and-admin.test.ts[2m > [22m[2mPhase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation[2m > [22m[2m1.5. QuĂªn máº­t kháº©u & Äáº·t láº¡i máº­t kháº©u má»›i, thu há»“i toĂ n bá»™ session cÅ©
+apps/server test: [22m[39mđŸ“§ ÄĂ£ gá»­i email tá»›i reset_pwd_user_1789753413335@hcmus.edu.vn (Message ID: <e0831b7c-0803-4301-c965-37b82b5fb82c@ssg.edu.vn>)
+apps/server test: [90mstdout[2m | src/__tests__/media-pipeline.test.ts[2m > [22m[2mPhase 4 Rigorous Verification: Media Pipeline, Sharp Animated Crop & Gateway Access Control[2m > [22m[2m6.1. BULLMQ QUEUE & WORKER THáº¬T: Äáº©y job vĂ o hĂ ng Ä‘á»£i tháº­t vá»›i Redis 6380, worker xá»­ lĂ½ báº¥t Ä‘á»“ng bá»™ thĂ nh cĂ´ng
+apps/server test: [22m[39m[MediaWorker] Äang xá»­ lĂ½ biáº¿n thá»ƒ vĂ  tá»‘i Æ°u cho asset: c95a95a1-5fb2-4a92-8abe-99cc5daba5b6
+apps/server test: [90mstdout[2m | src/__tests__/media-pipeline.test.ts[2m > [22m[2mPhase 4 Rigorous Verification: Media Pipeline, Sharp Animated Crop & Gateway Access Control[2m > [22m[2m6.1. BULLMQ QUEUE & WORKER THáº¬T: Äáº©y job vĂ o hĂ ng Ä‘á»£i tháº­t vá»›i Redis 6380, worker xá»­ lĂ½ báº¥t Ä‘á»“ng bá»™ thĂ nh cĂ´ng
+apps/server test: [22m[39m[MediaWorker] ÄĂ£ xá»­ lĂ½ thĂ nh cĂ´ng asset: c95a95a1-5fb2-4a92-8abe-99cc5daba5b6
+apps/server test:  [32mâœ“[39m src/__tests__/community-and-discovery.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 1026[2mms[22m[39m
+apps/server test: [90mstdout[2m | src/__tests__/auth-and-admin.test.ts[2m > [22m[2mPhase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation[2m > [22m[2m3.1. Má»Ÿ káº¿t ná»‘i Socket.IO tháº­t vá»›i session cookie há»£p lá»‡ -> káº¿t ná»‘i thĂ nh cĂ´ng
+apps/server test: [22m[39mđŸ”Œ NgÆ°á»i dĂ¹ng an_nguyen_khtn Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: RoXph-wKFG0FXtmYAAAA)
+apps/server test: [90mstdout[2m | src/__tests__/auth-and-admin.test.ts[2m > [22m[2mPhase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation[2m > [22m[2m3.2. Khi tĂ i khoáº£n bá»‹ khĂ³a hoáº·c phiĂªn bá»‹ thu há»“i -> Socket Ä‘ang má»Ÿ nháº­n event session.revoked vĂ  bá»‹ ngáº¯t káº¿t ná»‘i
+apps/server test: [22m[39mđŸ”Œ NgÆ°á»i dĂ¹ng an_nguyen_khtn Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: 0B8hk4hEtLdk7ZyoAAAB)
+apps/server test:  [32mâœ“[39m src/__tests__/auth-and-admin.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 1110[2mms[22m[39m
+apps/server test: [90mstderr[2m | src/__tests__/media-pipeline.test.ts[2m > [22m[2mPhase 4 Rigorous Verification: Media Pipeline, Sharp Animated Crop & Gateway Access Control[2m > [22m[2m6.2. Xá»¬ LĂ THáº¤T Báº I KHI FILE Há»NG: File há»ng cáº¥u trĂºc khiáº¿n Sharp lá»—i -> Cáº­p nháº­t tráº¡ng thĂ¡i FAILED, giá»¯ cĂ¡ch ly vĂ  tráº£ vá» 400
+apps/server test: [22m[39mLá»—i xá»­ lĂ½ asset 03c1359a-d51c-429a-99ee-25f239848720: Error: Input buffer has corrupt header: webp: unable to parse image
+apps/server test:     at Sharp.metadata (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/sharp@0.35.4_@types+node@22.20.3/node_modules/[4msharp[24m/dist/input.mjs:651:17)
+apps/server test:     at processAsset [90m(D:\Learning_With_HCMUS\SSG\apps\server\[39msrc\modules\media\media.processor.ts:15:63[90m)[39m
+apps/server test:     at [90mD:\Learning_With_HCMUS\SSG\apps\server\[39msrc\modules\media\media.routes.ts:81:9
+apps/server test: [90mstdout[2m | src/__tests__/realtime-and-operations.test.ts[2m > [22m[2mPhase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog[2m > [22m[2m1.8. KHĂ“A TĂ€I KHOáº¢N ÄANG ONLINE: Socket Ä‘ang má»Ÿ nháº­n event session.revoked vĂ  bá»‹ ngáº¯t káº¿t ná»‘i
+apps/server test: [22m[39mđŸ”Œ NgÆ°á»i dĂ¹ng bao_tran_khtn Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: W8M9ZwAP6WmKvv3ZAAAD)
+apps/server test:  [32mâœ“[39m src/__tests__/media-pipeline.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 1363[2mms[22m[39m
+apps/server test: [90mstderr[2m | src/__tests__/ai-chat-and-providers.test.ts[2m > [22m[2mPhase 7 Verification: Multi-Provider AI, Grounding Tools, Streaming, Quotas & Safety[2m > [22m[2m14. Fallback runtime: Lá»—i trÆ°á»›c chunk Ä‘áº§u tiĂªn chuyá»ƒn sang Attempt 2 fallback; Lá»—i giá»¯a chá»«ng stream Ä‘Ă¡nh INTERRUPTED
+apps/server test: [22m[39mError: Primary connection failed immediately
+apps/server test:     at doStream [90m(D:\Learning_With_HCMUS\SSG\apps\server\[39msrc\__tests__\ai-chat-and-providers.test.ts:800:37[90m)[39m
+apps/server test:     at MockLanguageModelV4.doStream (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/test/mock-language-model-v4.ts:61:22)
+apps/server test:     at execute (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/generate-text/stream-language-model-call.ts:355:27)
+apps/server test:     at runWithTracingChannelSpan (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/telemetry/tracing-channel-publisher.ts:76:12)
+apps/server test:     at executeLanguageModelCall (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/telemetry/create-telemetry-dispatcher.ts:184:14)
+apps/server test:     at streamLanguageModelCall (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/generate-text/stream-language-model-call.ts:352:7)
+apps/server test:     at retryWithExponentialBackoffInternal (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/@ai-sdk+provider-utils@5.0.43_zod@4.6.5/node_modules/[4m@ai-sdk/provider-utils[24m/src/retry-with-exponential-backoff.ts:87:12)
+apps/server test:     at streamStep (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/generate-text/stream-text.ts:2469:44)
+apps/server test:     at file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/generate-text/stream-text.ts:3139:7
+apps/server test:  [32mâœ“[39m src/__tests__/realtime-and-operations.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1611[2mms[22m[39m
+apps/server test:    [33m[2mâœ“[22m[39m Phase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog[2m > [22m1.2. REVIEW PENDING KHĂ”NG PHĂT VĂ€O PUBLIC ROOM: Public room place:<id> khĂ´ng nháº­n event chá»©a ná»™i dung pending; sau khi duyá»‡t má»›i cĂ³ event [33m 353[2mms[22m[39m
+apps/server test: [90mstderr[2m | src/__tests__/ai-chat-and-providers.test.ts[2m > [22m[2mPhase 7 Verification: Multi-Provider AI, Grounding Tools, Streaming, Quotas & Safety[2m > [22m[2m14. Fallback runtime: Lá»—i trÆ°á»›c chunk Ä‘áº§u tiĂªn chuyá»ƒn sang Attempt 2 fallback; Lá»—i giá»¯a chá»«ng stream Ä‘Ă¡nh INTERRUPTED
+apps/server test: [22m[39mError: Network dropped midway
+apps/server test:     at doStream [90m(D:\Learning_With_HCMUS\SSG\apps\server\[39msrc\__tests__\ai-chat-and-providers.test.ts:920:37[90m)[39m
+apps/server test:     at MockLanguageModelV4.doStream (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/test/mock-language-model-v4.ts:61:22)
+apps/server test:     at execute (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/generate-text/stream-language-model-call.ts:355:27)
+apps/server test:     at runWithTracingChannelSpan (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/telemetry/tracing-channel-publisher.ts:76:12)
+apps/server test:     at executeLanguageModelCall (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/telemetry/create-telemetry-dispatcher.ts:184:14)
+apps/server test:     at streamLanguageModelCall (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/generate-text/stream-language-model-call.ts:352:7)
+apps/server test:     at retryWithExponentialBackoffInternal (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/@ai-sdk+provider-utils@5.0.43_zod@4.6.5/node_modules/[4m@ai-sdk/provider-utils[24m/src/retry-with-exponential-backoff.ts:87:12)
+apps/server test:     at streamStep (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/generate-text/stream-text.ts:2469:44)
+apps/server test:     at file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/ai@7.0.105_zod@4.6.5/node_modules/[4mai[24m/src/generate-text/stream-text.ts:3139:7
+apps/server test:  [32mâœ“[39m src/__tests__/ai-chat-and-providers.test.ts [2m([22m[2m22 tests[22m[2m)[22m[33m 2347[2mms[22m[39m
+apps/server test:    [33m[2mâœ“[22m[39m Phase 7 Verification: Multi-Provider AI, Grounding Tools, Streaming, Quotas & Safety[2m > [22m5. Idempotency Key báº£o Ä‘áº£m gá»­i trĂ¹ng khĂ´ng sinh thĂªm message hay tiĂªu hao ngĂ¢n sĂ¡ch 2 láº§n [33m 365[2mms[22m[39m
+apps/server test:    [33m[2mâœ“[22m[39m Phase 7 Verification: Multi-Provider AI, Grounding Tools, Streaming, Quotas & Safety[2m > [22m14. Fallback runtime: Lá»—i trÆ°á»›c chunk Ä‘áº§u tiĂªn chuyá»ƒn sang Attempt 2 fallback; Lá»—i giá»¯a chá»«ng stream Ä‘Ă¡nh INTERRUPTED [33m 369[2mms[22m[39m
+apps/server test: [2m Test Files [22m [1m[32m6 passed[39m[22m[90m (6)[39m
+apps/server test: [2m      Tests [22m [1m[32m91 passed[39m[22m[90m (91)[39m
+apps/server test: [2m   Start at [22m 00:43:29
+apps/server test: [2m   Duration [22m 5.91s[2m (transform 883ms, setup 130ms, collect 17.75s, tests 7.90s, environment 1ms, prepare 1.41s)[22m
+apps/server test: Done

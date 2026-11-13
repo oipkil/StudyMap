@@ -1,0 +1,46 @@
+services:
+  ssg-postgres:
+    image: postgres:16-alpine
+    container_name: ssg-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ssg_admin
+      POSTGRES_PASSWORD: ssg_secret_password_2026
+      POSTGRES_DB: ssg_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - ssg_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ssg_admin -d ssg_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  ssg-redis:
+    image: redis:7-alpine
+    container_name: ssg-redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    volumes:
+      - ssg_redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  ssg-mailpit:
+    image: axllent/mailpit:latest
+    container_name: ssg-mailpit
+    restart: unless-stopped
+    ports:
+      - "1025:1025" # SMTP port
+      - "8025:8025" # Web UI port
+    environment:
+      MP_MAX_MESSAGES: 500
+
+volumes:
+  ssg_pgdata:
+  ssg_redisdata:

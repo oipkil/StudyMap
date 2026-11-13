@@ -1,0 +1,1088 @@
+[
+  {
+    "group": "Khách",
+    "name": "Trang khám phá (danh sách + bản đồ)",
+    "ok": true,
+    "error": null,
+    "shot": "01-guest-discover.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 3100
+  },
+  {
+    "group": "Khách",
+    "name": "Tìm kiếm tiếng Việt không dấu",
+    "ok": true,
+    "error": null,
+    "shot": "02-guest-search.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1762
+  },
+  {
+    "group": "Khách",
+    "name": "Bộ lọc Không gian / Tiện ích",
+    "ok": true,
+    "error": null,
+    "shot": "03-guest-filter-space.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 931
+  },
+  {
+    "group": "Khách",
+    "name": "Bản đồ trang chủ: phóng to rồi thu nhỏ -> danh sách tải lại theo khung nhìn",
+    "ok": true,
+    "error": null,
+    "shot": "04-guest-map-zoom-refetch.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 10043
+  },
+  {
+    "group": "Khách",
+    "name": "Bản đồ: nhãn Hoàng Sa / Trường Sa / Biển Đông hiện khi thu nhỏ, không còn \"South China Sea\"",
+    "ok": true,
+    "error": null,
+    "shot": "05-guest-map-islands.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 7704
+  },
+  {
+    "group": "Khách",
+    "name": "Trang bản đồ riêng",
+    "ok": true,
+    "error": null,
+    "shot": "06-guest-map.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 3314
+  },
+  {
+    "group": "Khách",
+    "name": "Chi tiết quán (gallery, giờ mở cửa, tiện ích)",
+    "ok": true,
+    "error": null,
+    "shot": "07-guest-place-detail.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2810
+  },
+  {
+    "group": "Khách",
+    "name": "Tab Đánh giá / Bài trải nghiệm / Hỏi đáp",
+    "ok": true,
+    "error": null,
+    "shot": "08-guest-place-tabs.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1186
+  },
+  {
+    "group": "Khách",
+    "name": "Trang 404: quán không tồn tại và đường dẫn sai đều có lối thoát (tìm quán / bản đồ)",
+    "ok": true,
+    "error": null,
+    "shot": "09-guest-404.png",
+    "apiErrors": [
+      "404 GET /api/v1/places/khong-co-quan-nay-539496",
+      "404 GET /api/v1/places/khong-co-quan-nay-539496"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Lỗi khi tải thông tin quán: AxiosError: Request failed with status code 404\n    at settle (http://localhost:5173/node_modules/.vite/deps/axios.js?v=b70c1436:1799:12)\n    at XMLHttpRequest.onloadend (h",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Lỗi khi tải thông tin quán: AxiosError: Request failed with status code 404\n    at settle (http://localhost:5173/node_modules/.vite/deps/axios.js?v=b70c1436:1799:12)\n    at XMLHttpRequest.onloadend (h"
+    ],
+    "ms": 3027
+  },
+  {
+    "group": "Khách",
+    "name": "Bản đồ: nút \"Vị trí của tôi\" cắm chấm xanh + hiện toạ độ hiện tại",
+    "ok": true,
+    "error": null,
+    "shot": "10-guest-map-my-location.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 4258
+  },
+  {
+    "group": "Khách",
+    "name": "So sánh quán (trống + hướng dẫn)",
+    "ok": true,
+    "error": null,
+    "shot": "11-guest-compare-empty.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1740
+  },
+  {
+    "group": "Khách",
+    "name": "So sánh 2 quán (bảng đối chiếu Wi-Fi/ổ cắm/giá)",
+    "ok": true,
+    "error": null,
+    "shot": "12-guest-compare-two.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2802
+  },
+  {
+    "group": "Khách",
+    "name": "Trang đăng nhập",
+    "ok": true,
+    "error": null,
+    "shot": "13-guest-login.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1432
+  },
+  {
+    "group": "Khách",
+    "name": "Trang đăng ký",
+    "ok": true,
+    "error": null,
+    "shot": "14-guest-register.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1434
+  },
+  {
+    "group": "Khách",
+    "name": "Trang quên mật khẩu",
+    "ok": true,
+    "error": null,
+    "shot": "15-guest-forgot.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1393
+  },
+  {
+    "group": "Khách",
+    "name": "Khách không vào được /admin",
+    "ok": true,
+    "error": null,
+    "shot": "16-guest-admin-blocked.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1394
+  },
+  {
+    "group": "Khách",
+    "name": "Chat AI yêu cầu đăng nhập",
+    "ok": true,
+    "error": null,
+    "shot": "17-guest-chat-requires-login.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Space] `direction` is deprecated. Please use `orientation` instead."
+    ],
+    "ms": 3329
+  },
+  {
+    "group": "Tài khoản",
+    "name": "Đăng ký tài khoản mới",
+    "ok": true,
+    "error": null,
+    "shot": "18-register-submitted.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 4573
+  },
+  {
+    "group": "Tài khoản",
+    "name": "Email xác minh gửi tới Mailpit",
+    "ok": true,
+    "error": null,
+    "shot": "19-email-verified.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2296
+  },
+  {
+    "group": "Tài khoản",
+    "name": "Đăng nhập tài khoản mới",
+    "ok": true,
+    "error": null,
+    "shot": "20-new-user-logged-in.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 3055
+  },
+  {
+    "group": "Tài khoản",
+    "name": "Quên mật khẩu gửi email",
+    "ok": true,
+    "error": null,
+    "shot": "21-forgot-password-sent.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 3508
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Đăng nhập & về trang khám phá",
+    "ok": true,
+    "error": null,
+    "shot": "22-student-home.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2842
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Yêu thích quán (toggle)",
+    "ok": true,
+    "error": null,
+    "shot": "23-student-favorite.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 1359
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Chi tiết quán: Viết đánh giá",
+    "ok": true,
+    "error": null,
+    "shot": "24-student-write-review.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Modal] `maskClosable` is deprecated. Please use `mask.closable` instead.",
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 7345
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Chi tiết quán: Gửi bình luận",
+    "ok": true,
+    "error": null,
+    "shot": "25-student-comment.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2715
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Chi tiết quán: Báo cáo vi phạm (chọn lý do + mô tả + gửi)",
+    "ok": true,
+    "error": null,
+    "shot": "26-student-report-submit.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 3446
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Chi tiết quán: Viết bài trải nghiệm",
+    "ok": true,
+    "error": null,
+    "shot": "27-student-post.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Modal] `maskClosable` is deprecated. Please use `mask.closable` instead."
+    ],
+    "ms": 3696
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Báo sửa thông tin / đóng góp cho quán",
+    "ok": true,
+    "error": null,
+    "shot": "28-student-contribution-modal.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1435
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Khối học bài: báo \"quán còn bàn không\" và xem giờ đông khách theo dữ liệu thật",
+    "ok": true,
+    "error": null,
+    "shot": "29-student-seat-report.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 4667
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Bình luận dạng cây: trả lời bình luận của mình rồi xoá (bình luận gốc còn chỗ \"đã bị xoá\")",
+    "ok": true,
+    "error": null,
+    "shot": "30-student-comment-thread-delete.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 10246
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Gợi ý quán mới: form đầy đủ như admin (chọn từ bản đồ, giờ, giá, tiện ích, trường động, ảnh, ghi chú)",
+    "ok": true,
+    "error": null,
+    "shot": "31-student-suggest-place.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Modal] `maskClosable` is deprecated. Please use `mask.closable` instead.",
+      "Warning: [antd: InputNumber] `addonAfter` is deprecated. Please use `Space.Compact` instead.",
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 14500
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Thu hồi đóng góp chưa duyệt ngay trên trang Đóng góp",
+    "ok": true,
+    "error": null,
+    "shot": "32-student-withdraw-contribution.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Modal] `maskClosable` is deprecated. Please use `mask.closable` instead.",
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 4787
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Chat AI: xem lại hội thoại cũ và xoá hội thoại",
+    "ok": true,
+    "error": null,
+    "shot": "33-student-chat-history-delete.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Space] `direction` is deprecated. Please use `orientation` instead."
+    ],
+    "ms": 4523
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Hồ sơ (kiểu mạng xã hội): /me/contributions chuyển về tab \"Đóng góp\" — một danh sách, lọc bằng nút",
+    "ok": true,
+    "error": null,
+    "shot": "34-student-my-contributions.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Modal] `maskClosable` is deprecated. Please use `mask.closable` instead."
+    ],
+    "ms": 2711
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Gửi bộ nhãn dán (tải ảnh + đặt tên + gửi duyệt)",
+    "ok": true,
+    "error": null,
+    "shot": "35-student-sticker-submit.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 2574
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Bộ sưu tập: tạo mới",
+    "ok": true,
+    "error": null,
+    "shot": "36-student-collection-create.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Modal] `maskClosable` is deprecated. Please use `mask.closable` instead.",
+      "Warning: [antd: List] The `List` component is deprecated and will be removed in the next major version. If you're using version 6.6.0 or later, please use `Listy` instead.",
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 4220
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Lưu quán vào bộ sưu tập (từ trang quán)",
+    "ok": true,
+    "error": null,
+    "shot": "37-student-save-to-collection.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: List] The `List` component is deprecated and will be removed in the next major version. If you're using version 6.6.0 or later, please use `Listy` instead.",
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 3461
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Trang bộ sưu tập: hiện đúng quán vừa lưu (tên, ảnh, địa chỉ) + nút gỡ",
+    "ok": true,
+    "error": null,
+    "shot": "38-student-collection-detail.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2235
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Tab Đã lưu: quán yêu thích + bộ sưu tập cùng một trang (không Invalid Date)",
+    "ok": true,
+    "error": null,
+    "shot": "39-student-favorites-tab.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Modal] `maskClosable` is deprecated. Please use `mask.closable` instead.",
+      "Warning: [antd: List] The `List` component is deprecated and will be removed in the next major version. If you're using version 6.6.0 or later, please use `Listy` instead."
+    ],
+    "ms": 2213
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Thông báo: trang danh sách",
+    "ok": true,
+    "error": null,
+    "shot": "40-student-notifications.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: List] The `List` component is deprecated and will be removed in the next major version. If you're using version 6.6.0 or later, please use `Listy` instead."
+    ],
+    "ms": 1664
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Thông báo: popover chuông",
+    "ok": true,
+    "error": null,
+    "shot": "41-student-notification-popover.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: List] The `List` component is deprecated and will be removed in the next major version. If you're using version 6.6.0 or later, please use `Listy` instead."
+    ],
+    "ms": 2811
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Hồ sơ kiểu mạng xã hội: ảnh bìa, avatar, 4 tab (Bài viết / Ảnh / Đã lưu / Đóng góp), bài chờ duyệt có ảnh",
+    "ok": true,
+    "error": null,
+    "shot": "42-student-public-profile.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Modal] `maskClosable` is deprecated. Please use `mask.closable` instead."
+    ],
+    "ms": 2239
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Sửa hồ sơ: đổi ảnh đại diện (cắt tròn) + giới thiệu -> hiện ngay trên hồ sơ và thanh menu",
+    "ok": true,
+    "error": null,
+    "shot": "43-student-profile-edit.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 2801
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Ảnh bìa hồ sơ: tải lên + cắt ngang -> hiện ngay, khách xem được",
+    "ok": true,
+    "error": null,
+    "shot": "44-student-profile-cover.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1979
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Tab Ảnh của hồ sơ: gom ảnh từ đánh giá + bài viết",
+    "ok": true,
+    "error": null,
+    "shot": "45-student-profile-photos.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Image] `wrapperStyle` is deprecated. Please use `styles.root` instead."
+    ],
+    "ms": 906
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Chat AI: hội thoại mới + đồng ý quyền riêng tư + gửi câu hỏi + nhận trả lời (DeepSeek thật)",
+    "ok": true,
+    "error": null,
+    "shot": "46-student-chat-answer.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Space] `direction` is deprecated. Please use `orientation` instead."
+    ],
+    "ms": 17706
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Hạn mức AI/ngày: vượt mức thì bị chặn 429 kèm thông báo",
+    "ok": true,
+    "error": null,
+    "shot": "47-student-ai-quota-blocked.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 429 (Too Many Requests)",
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 1876
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Chat AI: yêu cầu admin hỗ trợ",
+    "ok": true,
+    "error": null,
+    "shot": "48-student-chat-request-human.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1653
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Sinh viên không vào được /admin",
+    "ok": true,
+    "error": null,
+    "shot": "49-student-admin-blocked.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1390
+  },
+  {
+    "group": "Admin",
+    "name": "Tổng quan hệ thống (badge pending, thống kê)",
+    "ok": true,
+    "error": null,
+    "shot": "50-admin-dashboard.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: List] The `List` component is deprecated and will be removed in the next major version. If you're using version 6.6.0 or later, please use `Listy` instead."
+    ],
+    "ms": 2728
+  },
+  {
+    "group": "Admin",
+    "name": "Quản lý địa điểm: danh sách",
+    "ok": true,
+    "error": null,
+    "shot": "51-admin-places.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2168
+  },
+  {
+    "group": "Admin",
+    "name": "Thêm quán: tên tự đặt; gõ địa chỉ -> chọn từ bản đồ -> toạ độ + cơ sở trường tự điền",
+    "ok": true,
+    "error": null,
+    "shot": "52-admin-place-geocode-pick.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: InputNumber] `addonAfter` is deprecated. Please use `Space.Compact` instead."
+    ],
+    "ms": 7481
+  },
+  {
+    "group": "Admin",
+    "name": "Quản lý địa điểm: mở form sửa (nạp đúng dữ liệu mới nhất)",
+    "ok": true,
+    "error": null,
+    "shot": "53-admin-place-editor.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 3285
+  },
+  {
+    "group": "Admin",
+    "name": "Form sửa: tab Hình ảnh (ảnh đã gắn hiện đúng)",
+    "ok": true,
+    "error": null,
+    "shot": "54-admin-place-editor-media.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1335
+  },
+  {
+    "group": "Admin",
+    "name": "Form sửa: tab Tiện ích chi tiết (trường động seed: nhóm Không gian / Học tập / Đồ uống / Dịch vụ / Tiện nghi / Liên hệ)",
+    "ok": true,
+    "error": null,
+    "shot": "55-admin-place-editor-dynamic.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1495
+  },
+  {
+    "group": "Admin",
+    "name": "Form sửa: Lưu & Xuất Bản Ngay",
+    "ok": true,
+    "error": null,
+    "shot": "56-admin-place-publish-now.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 34717
+  },
+  {
+    "group": "Admin",
+    "name": "Duyệt đề xuất quán (hàng đợi đóng góp)",
+    "ok": true,
+    "error": null,
+    "shot": "57-admin-contributions.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2199
+  },
+  {
+    "group": "Admin",
+    "name": "Duyệt đề xuất: phê duyệt đề xuất mới nhất",
+    "ok": true,
+    "error": null,
+    "shot": "58-admin-contribution-approved.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Descriptions] Sum of column `span` in a line not match `column` of Descriptions.",
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 4866
+  },
+  {
+    "group": "Admin",
+    "name": "Ẩn quán khỏi trang công khai rồi hiện lại; rà soát quán trùng",
+    "ok": true,
+    "error": null,
+    "shot": "59-admin-place-hide-duplicates.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 10874
+  },
+  {
+    "group": "Admin",
+    "name": "Thư viện ảnh: tách ảnh nhãn dán, duyệt cả trang một lượt, xoá ảnh khỏi kho",
+    "ok": true,
+    "error": null,
+    "shot": "60-admin-media-queue.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 8852
+  },
+  {
+    "group": "Admin",
+    "name": "Thông báo Zalo: thêm kênh (token mã hoá), hiện trong bảng rồi xoá",
+    "ok": true,
+    "error": null,
+    "shot": "61-admin-zalo-channel.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: Instance created by `useForm` is not connected to any Form element. Forget to pass `form` prop?",
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 5029
+  },
+  {
+    "group": "Admin",
+    "name": "Kiểm duyệt đánh giá / bình luận / bài / bộ sưu tập (4 tab)",
+    "ok": true,
+    "error": null,
+    "shot": "62-admin-reviews.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2173
+  },
+  {
+    "group": "Admin",
+    "name": "Kiểm duyệt: duyệt đánh giá chờ",
+    "ok": true,
+    "error": null,
+    "shot": "63-admin-review-approved.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 3525
+  },
+  {
+    "group": "Admin",
+    "name": "Kiểm duyệt: tab bình luận + duyệt bình luận chờ",
+    "ok": true,
+    "error": null,
+    "shot": "64-admin-comment-approved.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 4486
+  },
+  {
+    "group": "Admin",
+    "name": "Kiểm duyệt: tab bài trải nghiệm + duyệt bài chờ",
+    "ok": true,
+    "error": null,
+    "shot": "65-admin-post-approved.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 4527
+  },
+  {
+    "group": "Admin",
+    "name": "Kiểm duyệt: tab bộ sưu tập",
+    "ok": true,
+    "error": null,
+    "shot": "66-admin-reviews-tab-collections.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1783
+  },
+  {
+    "group": "Admin",
+    "name": "Báo cáo vi phạm: mở báo cáo mới + Xác nhận & Giải quyết",
+    "ok": true,
+    "error": null,
+    "shot": "67-admin-report-resolved.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 3935
+  },
+  {
+    "group": "Admin",
+    "name": "Báo cáo vi phạm (hàng đợi)",
+    "ok": true,
+    "error": null,
+    "shot": "68-admin-reports.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1679
+  },
+  {
+    "group": "Admin",
+    "name": "Duyệt bộ nhãn dán: xem ảnh + Phê Duyệt Phát Hành",
+    "ok": true,
+    "error": null,
+    "shot": "69-admin-sticker-approved.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 4108
+  },
+  {
+    "group": "Admin",
+    "name": "Cơ sở trường & danh mục: danh sách từ DB + thêm cơ sở mới bằng tìm trên bản đồ",
+    "ok": true,
+    "error": null,
+    "shot": "70-admin-reference-campus-added.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: Instance created by `useForm` is not connected to any Form element. Forget to pass `form` prop?",
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 7118
+  },
+  {
+    "group": "Admin",
+    "name": "Thông tin động: tạo trường động mới (v1)",
+    "ok": true,
+    "error": null,
+    "shot": "71-admin-dynamic-field-created.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 3874
+  },
+  {
+    "group": "Admin",
+    "name": "Quản lý media (ảnh hiện, duyệt/thu hồi)",
+    "ok": true,
+    "error": null,
+    "shot": "72-admin-media.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2718
+  },
+  {
+    "group": "Admin",
+    "name": "Thông báo hệ thống (announcement) + tạo mới",
+    "ok": true,
+    "error": null,
+    "shot": "73-admin-announcement-create.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 4253
+  },
+  {
+    "group": "Admin",
+    "name": "Hỗ trợ sinh viên (ticket từ chat)",
+    "ok": true,
+    "error": null,
+    "shot": "74-admin-support.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2202
+  },
+  {
+    "group": "Admin",
+    "name": "Hỗ trợ: mở ticket + trả lời",
+    "ok": true,
+    "error": null,
+    "shot": "75-admin-support-reply.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: List] The `List` component is deprecated and will be removed in the next major version. If you're using version 6.6.0 or later, please use `Listy` instead.",
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 3493
+  },
+  {
+    "group": "Admin",
+    "name": "Nhật ký hệ thống (audit log)",
+    "ok": true,
+    "error": null,
+    "shot": "76-admin-audit-logs.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1697
+  },
+  {
+    "group": "Admin",
+    "name": "Quản lý người dùng",
+    "ok": true,
+    "error": null,
+    "shot": "77-admin-users.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1682
+  },
+  {
+    "group": "Admin",
+    "name": "Cấu hình AI: nhà cung cấp & model",
+    "ok": true,
+    "error": null,
+    "shot": "78-admin-ai-providers.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: Instance created by `useForm` is not connected to any Form element. Forget to pass `form` prop?"
+    ],
+    "ms": 2198
+  },
+  {
+    "group": "Admin",
+    "name": "Cấu hình AI: tác vụ & phiên bản prompt",
+    "ok": true,
+    "error": null,
+    "shot": "79-admin-ai-task-config.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1197
+  },
+  {
+    "group": "Admin",
+    "name": "Cấu hình AI: giám sát hội thoại",
+    "ok": true,
+    "error": null,
+    "shot": "80-admin-ai-conversations.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 1142
+  },
+  {
+    "group": "Công khai sau duyệt",
+    "name": "Đánh giá đã duyệt hiện trên trang quán dạng thẻ (avatar, sao, nội dung, ảnh) + điểm cập nhật",
+    "ok": true,
+    "error": null,
+    "shot": "81-public-review-visible.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 3660
+  },
+  {
+    "group": "Công khai sau duyệt",
+    "name": "Trang quán: mục Tiện ích chi tiết hiện đúng nhóm + giá trị admin vừa nhập",
+    "ok": true,
+    "error": null,
+    "shot": "82-public-dynamic-fields.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2728
+  },
+  {
+    "group": "Công khai sau duyệt",
+    "name": "Bài trải nghiệm đã duyệt: mở trang chi tiết bài viết",
+    "ok": true,
+    "error": null,
+    "shot": "83-public-post-detail.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2228
+  },
+  {
+    "group": "Công khai sau duyệt",
+    "name": "Hồ sơ công khai: KHÔNG lộ đánh giá đang chờ duyệt",
+    "ok": true,
+    "error": null,
+    "shot": "84-public-profile-no-pending-leak.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Modal] `maskClosable` is deprecated. Please use `mask.closable` instead."
+    ],
+    "ms": 1741
+  },
+  {
+    "group": "Công khai sau duyệt",
+    "name": "Nhãn dán đã duyệt xuất hiện trong bộ chọn (API public)",
+    "ok": true,
+    "error": null,
+    "shot": "85-public-sticker-available.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2413
+  },
+  {
+    "group": "Công khai sau duyệt",
+    "name": "Bình luận đã duyệt hiện với người khác",
+    "ok": true,
+    "error": null,
+    "shot": "86-public-comment-visible.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 3090
+  },
+  {
+    "group": "Công khai sau duyệt",
+    "name": "Banner thông báo hệ thống hiện trên trang chủ",
+    "ok": true,
+    "error": null,
+    "shot": "87-public-announcement-banner.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2261
+  },
+  {
+    "group": "Công khai sau duyệt",
+    "name": "Sinh viên 2 không đọc được đóng góp/bộ sưu tập riêng của sinh viên 1 (IDOR)",
+    "ok": true,
+    "error": null,
+    "shot": "88-public-idor-check.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 151
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Ảnh đại diện vừa đổi: hồ sơ báo \"đang chờ duyệt\" hoặc đã được duyệt xong",
+    "ok": true,
+    "error": null,
+    "shot": "89-student-avatar-pending-state.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Modal] `maskClosable` is deprecated. Please use `mask.closable` instead."
+    ],
+    "ms": 2930
+  },
+  {
+    "group": "Sinh viên",
+    "name": "Xoá đánh giá của chính mình trên trang quán -> điểm quán tính lại",
+    "ok": true,
+    "error": null,
+    "shot": "90-student-delete-own-review.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: message] Static function can not consume context like dynamic theme. Please use 'App' component instead."
+    ],
+    "ms": 5987
+  },
+  {
+    "group": "Mobile",
+    "name": "Mobile: khám phá",
+    "ok": true,
+    "error": null,
+    "shot": "91-mobile-discover.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2834
+  },
+  {
+    "group": "Mobile",
+    "name": "Mobile: bản đồ",
+    "ok": true,
+    "error": null,
+    "shot": "92-mobile-map.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2836
+  },
+  {
+    "group": "Mobile",
+    "name": "Mobile: chi tiết quán",
+    "ok": true,
+    "error": null,
+    "shot": "93-mobile-place-detail.png",
+    "apiErrors": [],
+    "consoleErrors": [],
+    "ms": 2881
+  },
+  {
+    "group": "Mobile",
+    "name": "Mobile: hồ sơ (kiểu mạng xã hội)",
+    "ok": true,
+    "error": null,
+    "shot": "94-mobile-profile.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Modal] `maskClosable` is deprecated. Please use `mask.closable` instead.",
+      "Warning: [antd: List] The `List` component is deprecated and will be removed in the next major version. If you're using version 6.6.0 or later, please use `Listy` instead."
+    ],
+    "ms": 2728
+  },
+  {
+    "group": "Mobile",
+    "name": "Mobile: hồ sơ cá nhân tab Đóng góp (không tràn ngang)",
+    "ok": true,
+    "error": null,
+    "shot": "95-mobile-profile-contributions.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Modal] `maskClosable` is deprecated. Please use `mask.closable` instead."
+    ],
+    "ms": 2777
+  },
+  {
+    "group": "Mobile",
+    "name": "Mobile: thông báo",
+    "ok": true,
+    "error": null,
+    "shot": "96-mobile-notifications.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: List] The `List` component is deprecated and will be removed in the next major version. If you're using version 6.6.0 or later, please use `Listy` instead."
+    ],
+    "ms": 2711
+  },
+  {
+    "group": "Mobile",
+    "name": "Mobile: chat AI toàn màn hình",
+    "ok": true,
+    "error": null,
+    "shot": "97-mobile-chat.png",
+    "apiErrors": [],
+    "consoleErrors": [
+      "Warning: [antd: Space] `direction` is deprecated. Please use `orientation` instead."
+    ],
+    "ms": 2910
+  }
+]

@@ -1,0 +1,54 @@
+﻿pnpm.exe : $ pnpm -r test
+At C:\Users\LDN\AppData\Local\pnpm\bin\pnpm.ps1:14 char:3
++   & "$basedir/../global/v11/1064-1a02ee87656/node_modules/@pnpm/exe/p ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ($ pnpm -r test:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Scope: 3 of 4 workspace projects
+packages/shared test$ vitest run
+packages/shared test: [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90mD:/Learning_With_HCMUS/SSG/packages/shared[39m
+packages/shared test:  [32mâœ“[39m src/__tests__/shared.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+packages/shared test: [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+packages/shared test: [2m      Tests [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+packages/shared test: [2m   Start at [22m 23:04:25
+packages/shared test: [2m   Duration [22m 792ms[2m (transform 88ms, setup 0ms, collect 251ms, tests 18ms, environment 0ms, prepare 250ms)[22m
+packages/shared test: Done
+apps/server test$ vitest run
+apps/server test: [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90mD:/Learning_With_HCMUS/SSG/apps/server[39m
+apps/server test: [90mstdout[2m | src/__tests__/realtime-and-operations.test.ts[2m > [22m[2mPhase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog[2m > [22m[2m1.1. HAI USER ONLINE: User A nháº­n thĂ´ng bĂ¡o cá»§a A, KHĂ”NG nháº­n cá»§a B; badge Ä‘áº¿m chĂ­nh xĂ¡c
+apps/server test: [22m[39mđŸ”Œ NgÆ°á»i dĂ¹ng an_nguyen_khtn Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: hInjdH69XploybM0AAAA)
+apps/server test: [90mstdout[2m | src/__tests__/realtime-and-operations.test.ts[2m > [22m[2mPhase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog[2m > [22m[2m1.1. HAI USER ONLINE: User A nháº­n thĂ´ng bĂ¡o cá»§a A, KHĂ”NG nháº­n cá»§a B; badge Ä‘áº¿m chĂ­nh xĂ¡c
+apps/server test: [22m[39mđŸ”Œ NgÆ°á»i dĂ¹ng bao_tran_khtn Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: z9J49pszbjZh5k44AAAB)
+apps/server test:  [32mâœ“[39m src/__tests__/dynamic-fields-and-revisions.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 365[2mms[22m[39m
+apps/server test: [90mstdout[2m | src/__tests__/realtime-and-operations.test.ts[2m > [22m[2mPhase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog[2m > [22m[2m1.2. REVIEW PENDING KHĂ”NG PHĂT VĂ€O PUBLIC ROOM: Public room place:<id> khĂ´ng nháº­n event chá»©a ná»™i dung pending; sau khi duyá»‡t má»›i cĂ³ event
+apps/server test: [22m[39mđŸ”Œ KhĂ¡ch Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: uRfNCBum5fR1_efpAAAC)
+apps/server test: [90mstdout[2m | src/__tests__/auth-and-admin.test.ts[2m > [22m[2mPhase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation[2m > [22m[2m1.1. ÄÄƒng kĂ½ tĂ i khoáº£n má»›i -> táº¡o email verification token trong database
+apps/server test: [22m[39mđŸ“§ ÄĂ£ gá»­i email tá»›i student_lifecycle_1789747470686@hcmus.edu.vn (Message ID: <07f6a26d-64c7-bd68-6419-d640316c9a52@ssg.edu.vn>)
+apps/server test: [90mstdout[2m | src/__tests__/media-pipeline.test.ts[2m > [22m[2mPhase 4 Rigorous Verification: Media Pipeline, Sharp Animated Crop & Gateway Access Control[2m > [22m[2m6.1. BULLMQ QUEUE & WORKER THáº¬T: Äáº©y job vĂ o hĂ ng Ä‘á»£i tháº­t vá»›i Redis 6380, worker xá»­ lĂ½ báº¥t Ä‘á»“ng bá»™ thĂ nh cĂ´ng
+apps/server test: [22m[39m[MediaWorker] Äang xá»­ lĂ½ biáº¿n thá»ƒ vĂ  tá»‘i Æ°u cho asset: 885d02d3-b832-45b4-98b0-fba78ab6dc83
+apps/server test: [90mstdout[2m | src/__tests__/auth-and-admin.test.ts[2m > [22m[2mPhase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation[2m > [22m[2m1.5. QuĂªn máº­t kháº©u & Äáº·t láº¡i máº­t kháº©u má»›i, thu há»“i toĂ n bá»™ session cÅ©
+apps/server test: [22m[39mđŸ“§ ÄĂ£ gá»­i email tá»›i reset_pwd_user_1789747471003@hcmus.edu.vn (Message ID: <9ac57b39-431a-98e2-3317-31352c96b0be@ssg.edu.vn>)
+apps/server test: [90mstdout[2m | src/__tests__/media-pipeline.test.ts[2m > [22m[2mPhase 4 Rigorous Verification: Media Pipeline, Sharp Animated Crop & Gateway Access Control[2m > [22m[2m6.1. BULLMQ QUEUE & WORKER THáº¬T: Äáº©y job vĂ o hĂ ng Ä‘á»£i tháº­t vá»›i Redis 6380, worker xá»­ lĂ½ báº¥t Ä‘á»“ng bá»™ thĂ nh cĂ´ng
+apps/server test: [22m[39m[MediaWorker] ÄĂ£ xá»­ lĂ½ thĂ nh cĂ´ng asset: 885d02d3-b832-45b4-98b0-fba78ab6dc83
+apps/server test:  [32mâœ“[39m src/__tests__/community-and-discovery.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 901[2mms[22m[39m
+apps/server test: [90mstderr[2m | src/__tests__/media-pipeline.test.ts[2m > [22m[2mPhase 4 Rigorous Verification: Media Pipeline, Sharp Animated Crop & Gateway Access Control[2m > [22m[2m6.2. Xá»¬ LĂ THáº¤T Báº I KHI FILE Há»NG: File há»ng cáº¥u trĂºc khiáº¿n Sharp lá»—i -> Cáº­p nháº­t tráº¡ng thĂ¡i FAILED, giá»¯ cĂ¡ch ly vĂ  tráº£ vá» 400
+apps/server test: [22m[39mLá»—i xá»­ lĂ½ asset 653c9c08-868b-44e1-a212-b932847229da: Error: Input buffer has corrupt header: webp: unable to parse image
+apps/server test:     at Sharp.metadata (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/sharp@0.35.4_@types+node@22.20.3/node_modules/[4msharp[24m/dist/input.mjs:651:17)
+apps/server test:     at processAsset [90m(D:\Learning_With_HCMUS\SSG\apps\server\[39msrc\modules\media\media.processor.ts:15:63[90m)[39m
+apps/server test:     at [90mD:\Learning_With_HCMUS\SSG\apps\server\[39msrc\modules\media\media.routes.ts:81:9
+apps/server test: [90mstdout[2m | src/__tests__/auth-and-admin.test.ts[2m > [22m[2mPhase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation[2m > [22m[2m3.1. Má»Ÿ káº¿t ná»‘i Socket.IO tháº­t vá»›i session cookie há»£p lá»‡ -> káº¿t ná»‘i thĂ nh cĂ´ng
+apps/server test: [22m[39mđŸ”Œ NgÆ°á»i dĂ¹ng an_nguyen_khtn Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: FNMC0uAIj6hWerSOAAAA)
+apps/server test: [90mstdout[2m | src/__tests__/auth-and-admin.test.ts[2m > [22m[2mPhase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation[2m > [22m[2m3.2. Khi tĂ i khoáº£n bá»‹ khĂ³a hoáº·c phiĂªn bá»‹ thu há»“i -> Socket Ä‘ang má»Ÿ nháº­n event session.revoked vĂ  bá»‹ ngáº¯t káº¿t ná»‘i
+apps/server test: [22m[39mđŸ”Œ NgÆ°á»i dĂ¹ng an_nguyen_khtn Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: aEcsIcg0yyul-2FYAAAB)
+apps/server test:  [32mâœ“[39m src/__tests__/auth-and-admin.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 1111[2mms[22m[39m
+apps/server test: [90mstdout[2m | src/__tests__/realtime-and-operations.test.ts[2m > [22m[2mPhase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog[2m > [22m[2m1.8. KHĂ“A TĂ€I KHOáº¢N ÄANG ONLINE: Socket Ä‘ang má»Ÿ nháº­n event session.revoked vĂ  bá»‹ ngáº¯t káº¿t ná»‘i
+apps/server test: [22m[39mđŸ”Œ NgÆ°á»i dĂ¹ng bao_tran_khtn Ä‘Ă£ káº¿t ná»‘i WebSocket (Socket ID: KFHgL3869ypkQjONAAAD)
+apps/server test:  [32mâœ“[39m src/__tests__/media-pipeline.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 1257[2mms[22m[39m
+apps/server test:  [32mâœ“[39m src/__tests__/realtime-and-operations.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1517[2mms[22m[39m
+apps/server test:    [33m[2mâœ“[22m[39m Phase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog[2m > [22m1.2. REVIEW PENDING KHĂ”NG PHĂT VĂ€O PUBLIC ROOM: Public room place:<id> khĂ´ng nháº­n event chá»©a ná»™i dung pending; sau khi duyá»‡t má»›i cĂ³ event [33m 339[2mms[22m[39m
+apps/server test: [2m Test Files [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+apps/server test: [2m      Tests [22m [1m[32m69 passed[39m[22m[90m (69)[39m
+apps/server test: [2m   Start at [22m 23:04:27
+apps/server test: [2m   Duration [22m 4.44s[2m (transform 726ms, setup 0ms, collect 11.71s, tests 5.15s, environment 1ms, prepare 1.24s)[22m
+apps/server test: Done

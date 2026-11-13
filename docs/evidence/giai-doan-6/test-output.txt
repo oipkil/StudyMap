@@ -1,0 +1,48 @@
+$ pnpm -r test
+Scope: 3 of 4 workspace projects
+packages/shared test$ vitest run
+packages/shared test:  RUN  v3.2.7 D:/Learning_With_HCMUS/SSG/packages/shared
+packages/shared test:  ✓ src/__tests__/shared.test.ts (9 tests) 19ms
+packages/shared test:  Test Files  1 passed (1)
+packages/shared test:       Tests  9 passed (9)
+packages/shared test:    Start at  22:50:06
+packages/shared test:    Duration  865ms (transform 96ms, setup 0ms, collect 306ms, tests 19ms, environment 0ms, prepare 229ms)
+packages/shared test: Done
+apps/server test$ vitest run
+apps/server test:  RUN  v3.2.7 D:/Learning_With_HCMUS/SSG/apps/server
+apps/server test: stdout | src/__tests__/realtime-and-operations.test.ts > Phase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog > 1.1. HAI USER ONLINE: User A nhận thông báo của A, KHÔNG nhận của B; badge đếm chính xác
+apps/server test: 🔌 Người dùng an_nguyen_khtn đã kết nối WebSocket (Socket ID: my0o_UKS0oGI0HN5AAAA)
+apps/server test: stdout | src/__tests__/realtime-and-operations.test.ts > Phase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog > 1.1. HAI USER ONLINE: User A nhận thông báo của A, KHÔNG nhận của B; badge đếm chính xác
+apps/server test: 🔌 Người dùng bao_tran_khtn đã kết nối WebSocket (Socket ID: 30ZlFto-d4OBW3RFAAAB)
+apps/server test:  ✓ src/__tests__/dynamic-fields-and-revisions.test.ts (8 tests) 442ms
+apps/server test: stdout | src/__tests__/realtime-and-operations.test.ts > Phase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog > 1.2. REVIEW PENDING KHÔNG PHÁT VÀO PUBLIC ROOM: Public room place:<id> không nhận event chứa nội dung pending; sau khi duyệt mới có event
+apps/server test: 🔌 Khách đã kết nối WebSocket (Socket ID: hZKO5zJVW9MESY9UAAAC)
+apps/server test: stdout | src/__tests__/auth-and-admin.test.ts > Phase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation > 1.1. Đăng ký tài khoản mới -> tạo email verification token trong database
+apps/server test: 📧 Đã gửi email tới student_lifecycle_1789746611726@hcmus.edu.vn (Message ID: <0040fbc1-296d-0870-ee29-41cf314979cb@ssg.edu.vn>)
+apps/server test: stdout | src/__tests__/auth-and-admin.test.ts > Phase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation > 1.5. Quên mật khẩu & Đặt lại mật khẩu mới, thu hồi toàn bộ session cũ
+apps/server test: 📧 Đã gửi email tới reset_pwd_user_1789746612063@hcmus.edu.vn (Message ID: <eb7a9d73-9e2b-3a08-65c8-b0b4b57d718b@ssg.edu.vn>)
+apps/server test: stdout | src/__tests__/media-pipeline.test.ts > Phase 4 Rigorous Verification: Media Pipeline, Sharp Animated Crop & Gateway Access Control > 6.1. BULLMQ QUEUE & WORKER THẬT: Đẩy job vào hàng đợi thật với Redis 6380, worker xử lý bất đồng bộ thành công
+apps/server test: [MediaWorker] Đang xử lý biến thể và tối ưu cho asset: f4d9e6fe-87fa-47c8-a168-a12a88e6ea5d
+apps/server test: stdout | src/__tests__/media-pipeline.test.ts > Phase 4 Rigorous Verification: Media Pipeline, Sharp Animated Crop & Gateway Access Control > 6.1. BULLMQ QUEUE & WORKER THẬT: Đẩy job vào hàng đợi thật với Redis 6380, worker xử lý bất đồng bộ thành công
+apps/server test: [MediaWorker] Đã xử lý thành công asset: f4d9e6fe-87fa-47c8-a168-a12a88e6ea5d
+apps/server test:  ✓ src/__tests__/community-and-discovery.test.ts (17 tests) 1011ms
+apps/server test: stderr | src/__tests__/media-pipeline.test.ts > Phase 4 Rigorous Verification: Media Pipeline, Sharp Animated Crop & Gateway Access Control > 6.2. XỬ LÝ THẤT BẠI KHI FILE HỎNG: File hỏng cấu trúc khiến Sharp lỗi -> Cập nhật trạng thái FAILED, giữ cách ly và trả về 400
+apps/server test: Lỗi xử lý asset 5d5afa7a-162a-4925-af14-bb70aea88957: Error: Input buffer has corrupt header: webp: unable to parse image
+apps/server test:     at Sharp.metadata (file:///D:/Learning_With_HCMUS/SSG/node_modules/.pnpm/sharp@0.35.4_@types+node@22.20.3/node_modules/sharp/dist/input.mjs:651:17)
+apps/server test:     at processAsset (D:\Learning_With_HCMUS\SSG\apps\server\src\modules\media\media.processor.ts:15:63)
+apps/server test:     at D:\Learning_With_HCMUS\SSG\apps\server\src\modules\media\media.routes.ts:81:9
+apps/server test: stdout | src/__tests__/auth-and-admin.test.ts > Phase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation > 3.1. Mở kết nối Socket.IO thật với session cookie hợp lệ -> kết nối thành công
+apps/server test: 🔌 Người dùng an_nguyen_khtn đã kết nối WebSocket (Socket ID: 5dBqFxJE8FQa3g2iAAAA)
+apps/server test: stdout | src/__tests__/auth-and-admin.test.ts > Phase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation > 3.2. Khi tài khoản bị khóa hoặc phiên bị thu hồi -> Socket đang mở nhận event session.revoked và bị ngắt kết nối
+apps/server test: 🔌 Người dùng an_nguyen_khtn đã kết nối WebSocket (Socket ID: aA1yPAXL6zy3WRY7AAAB)
+apps/server test:  ✓ src/__tests__/auth-and-admin.test.ts (18 tests) 1160ms
+apps/server test: stdout | src/__tests__/realtime-and-operations.test.ts > Phase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog > 1.8. KHÓA TÀI KHOẢN ĐANG ONLINE: Socket đang mở nhận event session.revoked và bị ngắt kết nối
+apps/server test: 🔌 Người dùng bao_tran_khtn đã kết nối WebSocket (Socket ID: T5IWErlelGEmZxj-AAAD)
+apps/server test:  ✓ src/__tests__/media-pipeline.test.ts (16 tests) 1381ms
+apps/server test:  ✓ src/__tests__/realtime-and-operations.test.ts (10 tests) 1543ms
+apps/server test:    ✓ Phase 6 Rigorous Verification: Realtime, Outbox, Announcements, Support & AuditLog > 1.2. REVIEW PENDING KHÔNG PHÁT VÀO PUBLIC ROOM: Public room place:<id> không nhận event chứa nội dung pending; sau khi duyệt mới có event  351ms
+apps/server test:  Test Files  5 passed (5)
+apps/server test:       Tests  69 passed (69)
+apps/server test:    Start at  22:50:08
+apps/server test:    Duration  4.61s (transform 731ms, setup 0ms, collect 12.22s, tests 5.54s, environment 1ms, prepare 1.36s)
+apps/server test: Done

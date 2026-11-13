@@ -1,0 +1,18 @@
+$ pnpm -r build
+Scope: 3 of 4 workspace projects
+packages/shared build$ tsc
+packages/shared build: Done
+apps/web build$ tsc -b && vite build
+apps/server build$ tsc
+apps/server build: Done
+apps/web build: vite v6.4.3 building for production...
+apps/web build: transforming...
+apps/web build: [plugin vite:resolve] Module "node:crypto" has been externalized for browser compatibility, imported by "D:/Learning_With_HCMUS/SSG/packages/shared/src/utils/crypto.ts". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+apps/web build: ✓ 3351 modules transformed.
+apps/web build: rendering chunks...
+apps/web build: computing gzip size...
+apps/web build: dist/index.html                     0.94 kB │ gzip:   0.60 kB
+apps/web build: dist/assets/index-9l2x2BX2.css     72.80 kB │ gzip:  11.06 kB
+apps/web build: dist/assets/index-CS9tLfrf.js   2,879.99 kB │ gzip: 857.55 kB
+apps/web build: ✓ built in 27.10s
+apps/web build: Done

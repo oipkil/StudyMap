@@ -1,0 +1,1205 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ==========================================
+// 1. TÀI KHOẢN, PHIÊN & HỒ SƠ CÁ NHÂN
+// ==========================================
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id                       String   @id @default(uuid())
+  email                    String   @unique
+  username                 String   @unique
+  passwordHash             String
+  role                     Role     @default(USER)
+  isEmailVerified          Boolean  @default(false)
+  isLocked                 Boolean  @default(false)
+  aiPrivacyConsentAccepted Boolean  @default(false)
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+
+  profile          UserProfile?
+  sessions         Session[]
+  authTokens       AuthToken[]
+  favorites        PlaceFavorite[]
+  seatReports      PlaceSeatReport[]
+  collections      Collection[]
+  reviews          Review[]
+  comments         Comment[]
+  posts            Post[]
+  reportsFiled     Report[]             @relation("ReportReporter")
+  placeSuggestions PlaceSuggestion[]
+  surveyRequests   SurveyRequest[]
+  changeRequests   PlaceChangeRequest[]
+  helpfulVotes     HelpfulVote[]
+  assets           Asset[]
+  stickerPacks     StickerPack[]
+  conversations    AIConversation[]
+  notifications    Notification[]
+  auditLogs        AuditLog[]           @relation("AdminAuditLogs")
+  assignedSupport  SupportCase[]        @relation("AssignedAdminSupport")
+  userSupportCases SupportCase[]        @relation("UserSupportCases")
+  aiBudgets        AIUsageBudget[]
+
+  @@map("users")
+}
+
+model UserProfile {
+  id                            String   @id @default(uuid())
+  userId                        String   @unique
+  user                          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  displayName                   String
+  currentPublishedAvatarAssetId String?
+  currentPublishedCoverAssetId  String? // Ảnh bìa hồ sơ (kiểu mạng xã hội)
+  currentPublishedBio           String?
+  universityCampusId            String?
+  customUniversityName          String? // Trường không có trong danh sách (sinh viên tự ghi)
+  isUniversityPublic            Boolean  @default(true)
+  createdAt                     DateTime @default(now())
+  updatedAt                     DateTime @updatedAt
+
+  revisions UserProfileRevision[]
+
+  @@map("user_profiles")
+}
+
+enum ModerationStatus {
+  PENDING
+  CHANGES_REQUESTED
+  REJECTED
+  APPROVED
+  REVOKED
+}
+
+model UserProfileRevision {
+  id                   String           @id @default(uuid())
+  userProfileId        String
+  userProfile          UserProfile      @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  pendingAvatarAssetId String?
+  pendingBio           String?
+  moderationStatus     ModerationStatus @default(PENDING)
+  reviewerNote         String?
+  reviewerAdminId      String?
+  createdAt            DateTime         @default(now())
+  approvedAt           DateTime?
+
+  @@map("user_profile_revisions")
+}
+
+model Session {
+  id               String    @id @default(uuid())
+  userId           String
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionTokenHash String    @unique
+  ipAddress        String?
+  userAgent        String?
+  expiresAt        DateTime
+  revokedAt        DateTime?
+  createdAt        DateTime  @default(now())
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+enum AuthTokenType {
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+}
+
+model AuthToken {
+  id        String        @id @default(uuid())
+  userId    String
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String        @unique
+  tokenType AuthTokenType
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime      @default(now())
+
+  @@index([userId, tokenType])
+  @@map("auth_tokens")
+}
+
+model RoleAuditLog {
+  id                 String   @id @default(uuid())
+  targetUserId       String
+  performedByAdminId String
+  oldRole            Role
+  newRole            Role
+  reason             String
+  createdAt          DateTime @default(now())
+
+  @@index([targetUserId])
+  @@map("role_audit_logs")
+}
+
+// ==========================================
+// 2. ĐỊA ĐIỂM, CHI NHÁNH & PHIÊN BẢN (SNAPSHOT)
+// ==========================================
+
+enum OperationalStatus {
+  OPERATING
+  TEMPORARILY_CLOSED
+  PERMANENTLY_CLOSED
+  UNKNOWN
+}
+
+enum PublicationStatus {
+  DRAFT
+  PENDING
+  CHANGES_REQUESTED
+  REJECTED
+  APPROVED
+  PUBLISHED
+  HIDDEN
+  REVOKED
+  ARCHIVED
+  WITHDRAWN
+}
+
+model Category {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  name        String
+  icon        String?
+  description String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  places        Place[]
+  criteria      ReviewCriteria[]
+  fieldBindings CategoryFieldBinding[]
+
+  @@map("categories")
+}
+
+model Brand {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  name        String
+  logoAssetId String?
+  description String?
+  createdAt   DateTime @default(now())
+
+  places Place[]
+
+  @@map("brands")
+}
+
+model Region {
+  id         String   @id @default(uuid())
+  code       String   @unique
+  name       String
+  parentCode String?
+  createdAt  DateTime @default(now())
+
+  campuses Campus[]
+
+  @@map("regions")
+}
+
+model Campus {
+  id             String   @id @default(uuid())
+  name           String
+  universityName String
+  latitude       Float
+  longitude      Float
+  address        String
+  regionId       String?
+  region         Region?  @relation(fields: [regionId], references: [id], onDelete: SetNull)
+  createdAt      DateTime @default(now())
+
+  projections PlacePublishedProjection[]
+
+  @@index([regionId])
+  @@map("campuses")
+}
+
+model Place {
+  id                         String            @id @default(uuid())
+  slug                       String            @unique
+  defaultName                String
+  categoryId                 String
+  category                   Category          @relation(fields: [categoryId], references: [id])
+  brandId                    String?
+  brand                      Brand?            @relation(fields: [brandId], references: [id], onDelete: SetNull)
+  parentPlaceId              String?
+  parentPlace                Place?            @relation("PlaceHierarchy", fields: [parentPlaceId], references: [id], onDelete: SetNull)
+  childPlaces                Place[]           @relation("PlaceHierarchy")
+  operationalStatus          OperationalStatus @default(OPERATING)
+  publicationStatus          PublicationStatus @default(DRAFT)
+  currentPublishedRevisionId String?           @unique
+  currentPublishedRevision   PlaceRevision?    @relation("CurrentPublishedRevision", fields: [currentPublishedRevisionId], references: [id])
+  createdByUserId            String?
+  createdAt                  DateTime          @default(now())
+  updatedAt                  DateTime          @updatedAt
+
+  revisions      PlaceRevision[]           @relation("PlaceAllRevisions")
+  projection     PlacePublishedProjection?
+  reviews        Review[]
+  favorites      PlaceFavorite[]
+  changeRequests PlaceChangeRequest[]
+  surveyRequests SurveyRequest[]
+  seatReports    PlaceSeatReport[]
+
+  @@index([categoryId])
+  @@index([brandId])
+  @@index([parentPlaceId])
+  @@map("places")
+}
+
+model PlaceRevision {
+  id               String           @id @default(uuid())
+  placeId          String
+  place            Place            @relation("PlaceAllRevisions", fields: [placeId], references: [id], onDelete: Cascade)
+  revisionNumber   Int
+  baseRevisionId   String? // Dùng để kiểm tra xung đột (3-way conflict detection)
+  snapshotData     Json // Chứa TOÀN BỘ PlaceSnapshotDataSchema (Zod validated)
+  authorUserId     String
+  moderationStatus ModerationStatus @default(PENDING)
+  reviewerNote     String?
+  reviewerAdminId  String?
+  approvedAt       DateTime?
+  createdAt        DateTime         @default(now())
+
+  publishedAsPlace  Place?                     @relation("CurrentPublishedRevision")
+  projectionsSource PlacePublishedProjection[]
+
+  @@unique([placeId, revisionNumber])
+  @@index([placeId, moderationStatus])
+  @@map("place_revisions")
+}
+
+// Bảng Projection chỉ đọc phục vụ Tìm kiếm, Lọc và Bản đồ
+model PlacePublishedProjection {
+  placeId              String        @id
+  place                Place         @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  publishedRevisionId  String
+  publishedRevision    PlaceRevision @relation(fields: [publishedRevisionId], references: [id], onDelete: Cascade)
+  name                 String
+  alternateNames       String[]      @default([])
+  slug                 String
+  categoryId           String
+  campusId             String?
+  campus               Campus?       @relation(fields: [campusId], references: [id], onDelete: SetNull)
+  latitude             Float
+  longitude            Float
+  priceMin             Float?
+  priceMax             Float?
+  is24h                Boolean       @default(false)
+  ratingOverall        Float         @default(0)
+  reviewCount          Int           @default(0)
+  studyAmenities       Json          @default("{}") // Wi-Fi, socket, noise, seating
+  filterableAttributes Json          @default("{}") // Dynamic fields & REPEATER co-location JSONB
+  updatedAt            DateTime      @updatedAt
+
+  @@index([categoryId])
+  @@index([campusId])
+  @@index([latitude, longitude])
+  @@index([ratingOverall])
+  @@map("place_published_projections")
+}
+
+// ==========================================
+// 3. THÔNG TIN ĐỘNG (DYNAMIC FIELDS, REPEATER & BLOCKS)
+// ==========================================
+
+enum DataType {
+  TEXT
+  LONG_TEXT
+  RICH_TEXT
+  NUMBER
+  NUMBER_WITH_UNIT
+  CURRENCY
+  RANGE
+  SELECT_ONE
+  SELECT_MANY
+  BOOLEAN_TRI_STATE
+  DATE
+  TIME
+  SAFE_LINK
+  IMAGE
+  GALLERY
+  TABLE
+  REPEATER
+}
+
+model FieldGroup {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  label     String
+  sortOrder Int      @default(0)
+  icon      String?
+  createdAt DateTime @default(now())
+
+  fields FieldDefinition[]
+
+  @@map("field_groups")
+}
+
+model FieldDefinition {
+  id             String      @id @default(uuid())
+  key            String      @unique
+  label          String
+  description    String?
+  dataType       DataType
+  isRequired     Boolean     @default(false)
+  isFilterable   Boolean     @default(false)
+  isComparable   Boolean     @default(false)
+  isPublic       Boolean     @default(true)
+  isArchived     Boolean     @default(false)
+  fieldGroupId   String?
+  fieldGroup     FieldGroup? @relation(fields: [fieldGroupId], references: [id], onDelete: SetNull)
+  currentVersion Int         @default(1)
+  createdAt      DateTime    @default(now())
+
+  versions         FieldDefinitionVersion[]
+  categoryBindings CategoryFieldBinding[]
+
+  @@map("field_definitions")
+}
+
+model FieldDefinitionVersion {
+  id                 String          @id @default(uuid())
+  fieldDefinitionId  String
+  fieldDefinition    FieldDefinition @relation(fields: [fieldDefinitionId], references: [id], onDelete: Cascade)
+  version            Int
+  label              String
+  dataType           DataType
+  unit               String?
+  options            String[]        @default([])
+  tableColumnsConfig Json? // Cột cho kiểu TABLE
+  repeaterConfig     Json? // Cấu hình subFields và maxItems cho kiểu REPEATER
+  displayConditions  Json? // Quy tắc điều kiện hiển thị
+  permissions        Json            @default("{\"viewRole\":\"PUBLIC\",\"editRole\":\"ADMIN\"}")
+  createdByAdminId   String?
+  createdAt          DateTime        @default(now())
+
+  @@unique([fieldDefinitionId, version])
+  @@map("field_definition_versions")
+}
+
+model CategoryFieldBinding {
+  id                 String          @id @default(uuid())
+  categoryId         String
+  category           Category        @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  fieldDefinitionId  String
+  fieldDefinition    FieldDefinition @relation(fields: [fieldDefinitionId], references: [id], onDelete: Cascade)
+  isRequiredOverride Boolean?
+
+  @@unique([categoryId, fieldDefinitionId])
+  @@map("category_field_bindings")
+}
+
+// ==========================================
+// 4. ĐÓNG GÓP CỘNG ĐỒNG, ĐÁNH GIÁ & BÌNH LUẬN
+// ==========================================
+
+model PlaceSuggestion {
+  id                 String           @id @default(uuid())
+  userId             String
+  user               User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  proposedName       String
+  categoryId         String
+  addressDescription String
+  regionId           String?
+  campusId           String?
+  initialData        Json             @default("{}")
+  status             ModerationStatus @default(PENDING)
+  reviewerNote       String?
+  convertedPlaceId   String?
+  createdAt          DateTime         @default(now())
+
+  @@index([userId])
+  @@index([status])
+  @@map("place_suggestions")
+}
+
+model SurveyRequest {
+  id            String           @id @default(uuid())
+  userId        String
+  user          User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  placeId       String
+  place         Place            @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  reason        String
+  targetAspects Json             @default("[]") // Các tiêu chí cần khảo sát: Wi-Fi, ổ cắm...
+  status        ModerationStatus @default(PENDING)
+  createdAt     DateTime         @default(now())
+
+  @@index([placeId])
+  @@map("survey_requests")
+}
+
+model PlaceChangeRequest {
+  id               String           @id @default(uuid())
+  placeId          String
+  place            Place            @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  userId           String
+  user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  requestedChanges Json // Snapshot diff
+  evidenceAssetIds String[]         @default([])
+  baseRevisionId   String // Base revision lúc user xem quán
+  status           ModerationStatus @default(PENDING)
+  reviewerNote     String?
+  createdAt        DateTime         @default(now())
+
+  @@index([placeId])
+  @@map("place_change_requests")
+}
+
+enum ContentState {
+  PUBLISHED
+  HIDDEN
+  REVOKED
+  ARCHIVED
+}
+
+model ReviewCriteria {
+  id          String   @id @default(uuid())
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  code        String
+  label       String
+  description String?
+  maxScore    Int      @default(5)
+  sortOrder   Int      @default(0)
+
+  @@unique([categoryId, code])
+  @@map("review_criteria")
+}
+
+model Review {
+  id                         String          @id @default(uuid())
+  placeId                    String
+  place                      Place           @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  userId                     String
+  user                       User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currentPublishedRevisionId String?         @unique
+  currentPublishedRevision   ReviewRevision? @relation("CurrentPublishedReviewRevision", fields: [currentPublishedRevisionId], references: [id])
+  ratingOverall              Float           @default(5)
+  helpfulVotesCount          Int             @default(0)
+  state                      ContentState    @default(PUBLISHED)
+  createdAt                  DateTime        @default(now())
+  updatedAt                  DateTime        @updatedAt
+
+  revisions    ReviewRevision[] @relation("ReviewAllRevisions")
+  helpfulVotes HelpfulVote[]
+
+  @@unique([placeId, userId]) // 1 sinh viên 1 review hiệu lực cho 1 quán
+  @@index([placeId, state])
+  @@map("reviews")
+}
+
+model ReviewRevision {
+  id               String           @id @default(uuid())
+  reviewId         String
+  review           Review           @relation("ReviewAllRevisions", fields: [reviewId], references: [id], onDelete: Cascade)
+  revisionNumber   Int
+  ratingOverall    Int // 1-5 sao
+  criteriaScores   Json             @default("[]") // [{ criteriaId, score }]
+  content          String // 20 - 5000 chars
+  visitDate        String? // YYYY-MM-DD
+  attachedAssetIds String[]         @default([])
+  moderationStatus ModerationStatus @default(PENDING)
+  reviewerNote     String?
+  reviewerAdminId  String?
+  approvedAt       DateTime?
+  createdAt        DateTime         @default(now())
+
+  publishedAsReview Review? @relation("CurrentPublishedReviewRevision")
+
+  @@unique([reviewId, revisionNumber])
+  @@map("review_revisions")
+}
+
+enum TargetType {
+  PLACE
+  REVIEW
+  COMMENT
+  POST
+  ASSET
+  USER
+  STICKER_PACK
+}
+
+model Comment {
+  id                         String           @id @default(uuid())
+  targetType                 TargetType
+  targetId                   String
+  parentCommentId            String?
+  parentComment              Comment?         @relation("CommentReplies", fields: [parentCommentId], references: [id], onDelete: Cascade)
+  replies                    Comment[]        @relation("CommentReplies")
+  authorUserId               String
+  author                     User             @relation(fields: [authorUserId], references: [id], onDelete: Cascade)
+  currentPublishedRevisionId String?          @unique
+  currentPublishedRevision   CommentRevision? @relation("CurrentPublishedCommentRevision", fields: [currentPublishedRevisionId], references: [id])
+  state                      ContentState     @default(PUBLISHED)
+  isDeleted                  Boolean          @default(false)
+  createdAt                  DateTime         @default(now())
+
+  revisions CommentRevision[] @relation("CommentAllRevisions")
+
+  @@index([targetType, targetId])
+  @@map("comments")
+}
+
+model CommentRevision {
+  id               String           @id @default(uuid())
+  commentId        String
+  comment          Comment          @relation("CommentAllRevisions", fields: [commentId], references: [id], onDelete: Cascade)
+  revisionNumber   Int
+  content          String
+  stickerItemId    String?
+  attachedAssetId  String?
+  moderationStatus ModerationStatus @default(PENDING)
+  reviewerNote     String?
+  createdAt        DateTime         @default(now())
+
+  publishedAsComment Comment? @relation("CurrentPublishedCommentRevision")
+
+  @@unique([commentId, revisionNumber])
+  @@map("comment_revisions")
+}
+
+model Post {
+  id                         String        @id @default(uuid())
+  slug                       String        @unique
+  authorUserId               String
+  author                     User          @relation(fields: [authorUserId], references: [id], onDelete: Cascade)
+  currentPublishedRevisionId String?       @unique
+  currentPublishedRevision   PostRevision? @relation("CurrentPublishedPostRevision", fields: [currentPublishedRevisionId], references: [id])
+  state                      ContentState  @default(PUBLISHED)
+  createdAt                  DateTime      @default(now())
+
+  revisions PostRevision[] @relation("PostAllRevisions")
+
+  @@map("posts")
+}
+
+model PostRevision {
+  id               String           @id @default(uuid())
+  postId           String
+  post             Post             @relation("PostAllRevisions", fields: [postId], references: [id], onDelete: Cascade)
+  revisionNumber   Int
+  title            String
+  summary          String?
+  coverAssetId     String?
+  placeIds         String[]         @default([])
+  contentBlocks    Json             @default("[]")
+  moderationStatus ModerationStatus @default(PENDING)
+  reviewerNote     String?
+  approvedAt       DateTime?
+  createdAt        DateTime         @default(now())
+
+  publishedAsPost Post? @relation("CurrentPublishedPostRevision")
+
+  @@unique([postId, revisionNumber])
+  @@map("post_revisions")
+}
+
+enum ReportStatus {
+  OPEN
+  INVESTIGATING
+  RESOLVED
+  DISMISSED
+}
+
+model Report {
+  id              String       @id @default(uuid())
+  targetType      TargetType
+  targetId        String
+  reporterUserId  String
+  reporter        User         @relation("ReportReporter", fields: [reporterUserId], references: [id], onDelete: Cascade)
+  reasonCode      String
+  description     String?
+  evidenceUrls    String[]     @default([])
+  status          ReportStatus @default(OPEN)
+  actionTaken     String?
+  resolutionNote  String?
+  assignedAdminId String?
+  createdAt       DateTime     @default(now())
+  resolvedAt      DateTime?
+
+  @@index([targetType, targetId])
+  @@index([status])
+  @@map("reports")
+}
+
+model HelpfulVote {
+  id        String   @id @default(uuid())
+  reviewId  String
+  review    Review   @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([reviewId, userId]) // 1 user 1 helpful vote per review
+  @@map("helpful_votes")
+}
+
+// ==========================================
+// 5. MEDIA, ANIMATION & STICKER PACKS
+// ==========================================
+
+enum TechnicalStatus {
+  PENDING
+  PROCESSING
+  READY
+  FAILED
+}
+
+model Asset {
+  id                String           @id @default(uuid())
+  uploaderId        String
+  uploader          User             @relation(fields: [uploaderId], references: [id], onDelete: Cascade)
+  originalName      String
+  mimeType          String
+  byteSize          Int
+  fileHash          String // SHA-256
+  width             Int              @default(0)
+  height            Int              @default(0)
+  frameCount        Int              @default(1)
+  durationSeconds   Float            @default(0)
+  isAnimated        Boolean          @default(false)
+  currentRevisionId String?          @unique
+  currentRevision   AssetRevision?   @relation("CurrentAssetRevision", fields: [currentRevisionId], references: [id])
+  storageKey        String? // Đường dẫn lưu trữ (chỉ có khi READY)
+  quarantineKey     String // Đường dẫn cách ly (Quarantine storage)
+  technicalStatus   TechnicalStatus  @default(PENDING)
+  moderationStatus  ModerationStatus @default(PENDING)
+  createdAt         DateTime         @default(now())
+
+  revisions    AssetRevision[] @relation("AssetAllRevisions")
+  stickerItems StickerItem[]
+
+  @@index([uploaderId])
+  @@index([moderationStatus])
+  @@map("assets")
+}
+
+model AssetRevision {
+  id               String           @id @default(uuid())
+  assetId          String
+  asset            Asset            @relation("AssetAllRevisions", fields: [assetId], references: [id], onDelete: Cascade)
+  revisionNumber   Int
+  cropInstruction  Json? // Tọa độ crop normalized
+  byteSize         Int
+  fileHash         String
+  width            Int
+  height           Int
+  frameCount       Int              @default(1)
+  storageKey       String
+  technicalStatus  TechnicalStatus  @default(PENDING)
+  moderationStatus ModerationStatus @default(PENDING)
+  createdAt        DateTime         @default(now())
+
+  currentForAsset Asset?         @relation("CurrentAssetRevision")
+  variants        AssetVariant[]
+  usages          AssetUsage[]
+
+  @@unique([assetId, revisionNumber])
+  @@map("asset_revisions")
+}
+
+enum VariantType {
+  THUMBNAIL_STATIC
+  POSTER
+  OPTIMIZED_ANIMATED
+  CROPPED
+}
+
+model AssetVariant {
+  id              String        @id @default(uuid())
+  assetRevisionId String
+  assetRevision   AssetRevision @relation(fields: [assetRevisionId], references: [id], onDelete: Cascade)
+  variantType     VariantType
+  storageKey      String
+  width           Int
+  height          Int
+  mimeType        String
+  byteSize        Int
+  createdAt       DateTime      @default(now())
+
+  @@index([assetRevisionId, variantType])
+  @@map("asset_variants")
+}
+
+model AssetUsage {
+  id              String        @id @default(uuid())
+  assetRevisionId String
+  assetRevision   AssetRevision @relation(fields: [assetRevisionId], references: [id], onDelete: Cascade)
+  entityType      TargetType
+  entityId        String
+  isPublished     Boolean       @default(false)
+  createdAt       DateTime      @default(now())
+
+  @@index([assetRevisionId])
+  @@index([entityType, entityId])
+  @@map("asset_usages")
+}
+
+model StickerPack {
+  id               String           @id @default(uuid())
+  name             String
+  slug             String           @unique
+  authorUserId     String
+  author           User             @relation(fields: [authorUserId], references: [id], onDelete: Cascade)
+  moderationStatus ModerationStatus @default(PENDING)
+  sortOrder        Int              @default(0)
+  createdAt        DateTime         @default(now())
+
+  items StickerItem[]
+
+  @@map("sticker_packs")
+}
+
+model StickerItem {
+  id        String      @id @default(uuid())
+  packId    String
+  pack      StickerPack @relation(fields: [packId], references: [id], onDelete: Cascade)
+  shortcode String      @unique // Ví dụ: :ssg_coffee_study:
+  assetId   String
+  asset     Asset       @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  altText   String
+  sortOrder Int         @default(0)
+
+  @@map("sticker_items")
+}
+
+// ==========================================
+// 6. YÊU THÍCH, BỘ SƯU TẬP & SO SÁNH
+// ==========================================
+
+model PlaceFavorite {
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  placeId   String
+  place     Place    @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@id([userId, placeId])
+  @@map("place_favorites")
+}
+
+model Collection {
+  id                         String              @id @default(uuid())
+  userId                     String
+  user                       User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  isPublic                   Boolean             @default(false)
+  currentPublishedRevisionId String?             @unique
+  currentPublishedRevision   CollectionRevision? @relation("CurrentPublishedCollectionRevision", fields: [currentPublishedRevisionId], references: [id])
+  createdAt                  DateTime            @default(now())
+
+  revisions CollectionRevision[] @relation("CollectionAllRevisions")
+  items     CollectionItem[]
+
+  @@index([userId])
+  @@map("collections")
+}
+
+model CollectionRevision {
+  id               String           @id @default(uuid())
+  collectionId     String
+  collection       Collection       @relation("CollectionAllRevisions", fields: [collectionId], references: [id], onDelete: Cascade)
+  revisionNumber   Int
+  name             String
+  description      String?
+  coverAssetId     String?
+  moderationStatus ModerationStatus @default(PENDING)
+  reviewerNote     String?
+  approvedAt       DateTime?
+  createdAt        DateTime         @default(now())
+
+  publishedAsCollection Collection? @relation("CurrentPublishedCollectionRevision")
+
+  @@unique([collectionId, revisionNumber])
+  @@map("collection_revisions")
+}
+
+model CollectionItem {
+  id           String     @id @default(uuid())
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  placeId      String
+  note         String?
+  sortOrder    Int        @default(0)
+  createdAt    DateTime   @default(now())
+
+  @@index([collectionId])
+  @@map("collection_items")
+}
+
+// ==========================================
+// 7. AI ĐA NHÀ CUNG CẤP & HỖ TRỢ TRỰC TUYẾN
+// ==========================================
+
+enum AIProviderType {
+  OPENAI
+  ANTHROPIC
+  GOOGLE
+  OPENAI_COMPATIBLE
+  MOCK
+}
+
+model AIProviderConfig {
+  id              String         @id @default(uuid())
+  name            String
+  adapterType     AIProviderType
+  baseUrl         String? // Endpoint đã được kiểm tra chống SSRF
+  encryptedApiKey String // AES-256-GCM ciphertext
+  iv              String // Initialization vector
+  authTag         String // Authentication tag
+  isEnabled       Boolean        @default(true)
+  isDefault       Boolean        @default(false)
+  sortOrder       Int            @default(0)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  models AIModelConfig[]
+
+  @@map("ai_provider_configs")
+}
+
+model AIModelConfig {
+  id                 String           @id @default(uuid())
+  providerId         String
+  provider           AIProviderConfig @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  modelId            String // e.g. gpt-4o, claude-3-5-sonnet, gemini-1.5-pro
+  displayName        String
+  maxTokens          Int              @default(2048)
+  contextWindow      Int              @default(128000)
+  supportsTools      Boolean          @default(true)
+  supportsStreaming  Boolean          @default(true)
+  supportsVision     Boolean          @default(false)
+  defaultTemperature Float            @default(0.7)
+  createdAt          DateTime         @default(now())
+
+  taskConfigs AITaskConfig[]
+  attempts    AIAttempt[]
+
+  @@unique([providerId, modelId])
+  @@map("ai_model_configs")
+}
+
+enum AITaskType {
+  STUDENT_CHAT
+  DRAFT_ASSISTANT
+  REVIEW_SUMMARIZER
+  CONTENT_MODERATION
+}
+
+model AITaskConfig {
+  id                String        @id @default(uuid())
+  taskType          AITaskType    @unique
+  activeModelId     String
+  activeModel       AIModelConfig @relation(fields: [activeModelId], references: [id])
+  fallbackModelId   String?
+  systemPrompt      String
+  promptVersion     Int           @default(1)
+  maxPlacesInAnswer Int           @default(3)
+  toolAllowlist     String[]      @default(["searchPlaces", "getPublishedPlaceDetail", "comparePlaces"])
+  updatedAt         DateTime      @updatedAt
+
+  versions AITaskConfigVersion[]
+
+  @@map("ai_task_configs")
+}
+
+// Bất biến: Snapshot cấu hình áp dụng cho từng attempt
+model AITaskConfigVersion {
+  id            String       @id @default(uuid())
+  taskConfigId  String
+  taskConfig    AITaskConfig @relation(fields: [taskConfigId], references: [id], onDelete: Cascade)
+  version       Int
+  modelId       String
+  systemPrompt  String
+  toolAllowlist String[]
+  createdAt     DateTime     @default(now())
+
+  attempts AIAttempt[]
+
+  @@unique([taskConfigId, version])
+  @@map("ai_task_config_versions")
+}
+
+enum ConversationStatus {
+  AI_ACTIVE
+  HUMAN_WAITING
+  HUMAN_ACTIVE
+  RESOLVED
+}
+
+model AIConversation {
+  id        String             @id @default(uuid())
+  userId    String
+  user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String             @default("Hội thoại mới")
+  status    ConversationStatus @default(AI_ACTIVE)
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  messages    AIMessage[]
+  supportCase SupportCase?
+
+  @@index([userId])
+  @@map("ai_conversations")
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+  SYSTEM
+  ADMIN
+}
+
+enum AIMessageStatus {
+  STARTED
+  STREAMING
+  COMPLETED
+  INTERRUPTED
+  FAILED
+}
+
+model AIMessage {
+  id             String          @id @default(uuid())
+  conversationId String
+  conversation   AIConversation  @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           MessageRole
+  content        String
+  sequenceNumber Int
+  status         AIMessageStatus @default(COMPLETED)
+  sourcesJson    Json? // Danh sách quán đính kèm đã trích xuất từ tool
+  feedback       String? // HELPFUL | UNHELPFUL
+  interruptedAt  DateTime?
+  errorDetails   String?
+  createdAt      DateTime        @default(now())
+
+  attempts AIAttempt[]
+
+  @@index([conversationId, sequenceNumber])
+  @@map("ai_messages")
+}
+
+model AIAttempt {
+  id                  String              @id @default(uuid())
+  messageId           String
+  message             AIMessage           @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  idempotencyKey      String              @unique // Client idempotency key
+  attemptNumber       Int                 @default(1)
+  modelId             String
+  model               AIModelConfig       @relation(fields: [modelId], references: [id])
+  taskConfigVersionId String
+  taskConfigVersion   AITaskConfigVersion @relation(fields: [taskConfigVersionId], references: [id])
+  totalChunks         Int                 @default(0)
+  promptTokens        Int?
+  completionTokens    Int?
+  usageEstimated      Boolean             @default(false)
+  durationMs          Int                 @default(0)
+  createdAt           DateTime            @default(now())
+
+  @@index([messageId])
+  @@map("ai_attempts")
+}
+
+enum SupportStatus {
+  WAITING
+  HUMAN_ACTIVE
+  RESOLVED
+}
+
+model SupportCase {
+  id              String         @id @default(uuid())
+  conversationId  String         @unique
+  conversation    AIConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  userId          String
+  user            User           @relation("UserSupportCases", fields: [userId], references: [id], onDelete: Cascade)
+  assignedAdminId String?
+  assignedAdmin   User?          @relation("AssignedAdminSupport", fields: [assignedAdminId], references: [id], onDelete: SetNull)
+  status          SupportStatus  @default(WAITING)
+  adminNotes      String?
+  createdAt       DateTime       @default(now())
+  resolvedAt      DateTime?
+
+  @@index([status])
+  @@map("support_cases")
+}
+
+enum BudgetScope {
+  SYSTEM_DAILY
+  USER_DAILY
+  ADMIN_DAILY
+}
+
+model AIUsageBudget {
+  id              String      @id @default(uuid())
+  scopeType       BudgetScope
+  targetUserId    String? // Null nếu là SYSTEM_DAILY
+  targetUser      User?       @relation(fields: [targetUserId], references: [id], onDelete: Cascade)
+  maxTokens       Int         @default(50000)
+  maxRequests     Int         @default(20)
+  currentTokens   Int         @default(0)
+  currentRequests Int         @default(0)
+  currentDate     String // YYYY-MM-DD (theo server timezone)
+
+  @@unique([scopeType, targetUserId, currentDate])
+  @@map("ai_usage_budgets")
+}
+
+// ==========================================
+// 8. THÔNG BÁO, ANNOUNCEMENT, OUTBOX & AUDIT
+// ==========================================
+
+enum AnnouncementLevel {
+  INFO
+  WARNING
+  SUCCESS
+  ERROR
+}
+
+enum TargetAudience {
+  ALL
+  USERS
+  ADMINS
+}
+
+model Announcement {
+  id              String            @id @default(uuid())
+  title           String
+  content         String
+  level           AnnouncementLevel @default(INFO)
+  linkUrl         String?
+  startAt         DateTime
+  endAt           DateTime
+  targetAudience  TargetAudience    @default(ALL)
+  targetPageScope String            @default("ALL") // "ALL", "DISCOVER", "PLACE_DETAIL"...
+  isDismissible   Boolean           @default(true)
+  priority        Int               @default(0)
+  version         Int               @default(1)
+  isPublished     Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  dismissals AnnouncementDismissal[]
+
+  @@map("announcements")
+}
+
+model AnnouncementDismissal {
+  userId           String
+  announcementId   String
+  announcement     Announcement @relation(fields: [announcementId], references: [id], onDelete: Cascade)
+  dismissedVersion Int
+  dismissedAt      DateTime     @default(now())
+
+  @@id([userId, announcementId])
+  @@map("announcement_dismissals")
+}
+
+model Notification {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type        String // e.g. "SUGGESTION_APPROVED", "CHANGES_REQUESTED", "SUPPORT_REPLY"
+  title       String
+  body        String
+  deepLinkUrl String?
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}
+
+enum OutboxStatus {
+  PENDING
+  PUBLISHED
+  FAILED
+}
+
+model OutboxEvent {
+  id            String       @id @default(uuid())
+  aggregateType String // e.g. "PLACE", "REVIEW", "MODERATION", "ASSET"
+  aggregateId   String
+  eventType     String // e.g. "place.published.updated", "moderation.updated"
+  payload       Json
+  status        OutboxStatus @default(PENDING)
+  retryCount    Int          @default(0)
+  createdAt     DateTime     @default(now())
+
+  @@index([status, createdAt])
+  @@map("outbox_events")
+}
+
+model AuditLog {
+  id           String   @id @default(uuid())
+  adminUserId  String
+  adminUser    User     @relation("AdminAuditLogs", fields: [adminUserId], references: [id], onDelete: Cascade)
+  action       String // e.g. "APPROVE_PLACE", "REVOKE_ASSET", "VIEW_CHAT_CONTENT"
+  targetEntity String // e.g. "Place", "Asset", "AIConversation"
+  targetId     String
+  details      Json     @default("{}")
+  ipAddress    String?
+  createdAt    DateTime @default(now())
+
+  @@index([adminUserId])
+  @@index([targetEntity, targetId])
+  @@map("audit_logs")
+}
+
+enum IntegrationKind {
+  ZALO_BOT
+}
+
+/// Kênh gửi thông báo ra ngoài hệ thống (bot Zalo): cấu hình động trong trang quản trị, token mã hoá AES-256-GCM.
+model NotificationChannel {
+  id              String          @id @default(uuid())
+  kind            IntegrationKind @default(ZALO_BOT)
+  name            String
+  isEnabled       Boolean         @default(true)
+  chatId          String // chat_id (người nhận hoặc nhóm) lấy từ getUpdates
+  encryptedToken  String
+  iv              String
+  authTag         String
+  /// Danh sách sự kiện gửi đi, ví dụ: SUGGESTION_PENDING, REVIEW_PENDING, REPORT_CREATED
+  events          String[]        @default([])
+  /// Số phút gộp tối thiểu giữa 2 tin cùng loại (0 = gửi ngay mọi sự kiện)
+  throttleMinutes Int             @default(0)
+  lastStatus      String?
+  lastError       String?
+  lastSentAt      DateTime?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@map("notification_channels")
+}
+
+enum SeatStatus {
+  PLENTY
+  FEW
+  FULL
+}
+
+/// Báo cáo nhanh "quán còn bàn không" do sinh viên bấm trên trang quán; tổng hợp theo 2 giờ gần nhất.
+model PlaceSeatReport {
+  id        String     @id @default(uuid())
+  placeId   String
+  place     Place      @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  userId    String?
+  user      User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  status    SeatStatus
+  createdAt DateTime   @default(now())
+
+  @@index([placeId, createdAt])
+  @@map("place_seat_reports")
+}

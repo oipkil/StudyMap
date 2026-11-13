@@ -1,0 +1,55 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch();
+const ctx = await b.newContext({ viewport: { width: 1440, height: 900 } });
+const p = await ctx.newPage();
+const errors = [];
+p.on('response', (r) => { if (r.url().includes('/api/') && r.status() >= 400) errors.push(`${r.status()} ${r.request().method()} ${r.url().replace('http://localhost:5173','')}`); });
+await p.goto('http://localhost:5173/login');
+await p.locator('input').first().fill('admin@ssg.edu.vn');
+await p.fill('input[type="password"]', 'Admin@123456');
+await p.click('button[type="submit"]');
+await p.waitForTimeout(1500);
+await p.goto('http://localhost:5173/admin/places');
+await p.waitForTimeout(2000);
+const openEditor = async () => {
+  const row = p.locator('tr', { hasText: 'Cà Phê Học Bài Cú Đêm' }).first();
+  await row.locator('button', { hasText: /Sửa|Chỉnh/ }).first().click().catch(async () => { await row.locator('button').first().click(); });
+  await p.waitForTimeout(2500);
+};
+await openEditor();
+const NEW_ADDR = `183 Trần Bình Trọng, P.3, Q.5 (test ${Date.now() % 1000})`;
+const addrInput = p.locator('#address');
+await addrInput.fill(NEW_ADDR);
+// tab Hình ảnh -> chọn từ kho ảnh
+await p.locator('.ant-tabs-tab', { hasText: 'Hình Ảnh' }).first().click();
+await p.waitForTimeout(800);
+const before = await p.locator('.ant-tabs-tab', { hasText: 'Hình Ảnh' }).first().textContent();
+console.log('MEDIA_TAB_BEFORE =', before?.trim());
+await p.locator('button', { hasText: 'Chọn từ kho ảnh' }).first().click();
+await p.waitForTimeout(1500);
+const libImgs = p.locator('.ant-modal img');
+const n = await libImgs.count();
+console.log('LIBRARY_IMAGES =', n);
+for (let i = 0; i < Math.min(n, 2); i++) { await libImgs.nth(i).click(); await p.waitForTimeout(300); }
+const okBtn = p.locator('.ant-modal button', { hasText: /Chọn|Gắn|Xác nhận|Thêm/ }).last();
+if (await okBtn.count()) await okBtn.click(); else await p.locator('.ant-modal .ant-btn-primary').last().click();
+await p.waitForTimeout(1000);
+const after = await p.locator('.ant-tabs-tab', { hasText: 'Hình Ảnh' }).first().textContent();
+console.log('MEDIA_TAB_AFTER =', after?.trim());
+await p.screenshot({ path: 'docs/evidence/_editor-before-save.png' });
+await p.locator('button', { hasText: 'Lưu & Xuất Bản Ngay' }).click();
+await p.waitForTimeout(3000);
+const toast = await p.locator('.ant-message').textContent().catch(() => '');
+console.log('TOAST =', toast?.trim());
+// reopen
+await p.waitForTimeout(1000);
+await openEditor();
+console.log('ADDRESS_AFTER_REOPEN =', JSON.stringify(await p.locator('#address').inputValue()));
+console.log('MEDIA_TAB_AFTER_REOPEN =', (await p.locator('.ant-tabs-tab', { hasText: 'Hình Ảnh' }).first().textContent())?.trim());
+await p.screenshot({ path: 'docs/evidence/_editor-after-reopen.png' });
+await p.goto('http://localhost:5173/places/ca-phe-hoc-bai-cu-dem-24-7');
+await p.waitForTimeout(2500);
+console.log('PUBLIC_ADDR_FOUND =', await p.locator(`text=${NEW_ADDR}`).count());
+console.log('PUBLIC_IMGS =', await p.locator('.ant-image img').count());
+console.log('API_ERRORS =', JSON.stringify(errors));
+await b.close();

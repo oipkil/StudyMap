@@ -1,0 +1,38 @@
+$ pnpm -r test
+Scope: 3 of 4 workspace projects
+packages/shared test$ vitest run
+packages/shared test: [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90mD:/Learning_With_HCMUS/SSG/packages/shared[39m
+packages/shared test:  [32m✓[39m src/__tests__/shared.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 39[2mms[22m[39m
+packages/shared test: [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+packages/shared test: [2m      Tests [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+packages/shared test: [2m   Start at [22m 22:26:57
+packages/shared test: [2m   Duration [22m 907ms[2m (transform 181ms, setup 0ms, collect 343ms, tests 39ms, environment 0ms, prepare 234ms)[22m
+packages/shared test: Done
+apps/server test$ vitest run
+apps/server test: [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90mD:/Learning_With_HCMUS/SSG/apps/server[39m
+apps/server test:  [32m✓[39m src/__tests__/dynamic-fields-and-revisions.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 452[2mms[22m[39m
+apps/server test: [90mstdout[2m | src/__tests__/auth-and-admin.test.ts[2m > [22m[2mPhase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation[2m > [22m[2m1.1. Đăng ký tài khoản mới -> tạo email verification token trong database
+apps/server test: [22m[39m📧 Đã gửi email tới student_lifecycle_1789745223503@hcmus.edu.vn (Message ID: <4bfc90f6-9370-fb92-dde7-996e858e04d8@ssg.edu.vn>)
+apps/server test: [90mstdout[2m | src/__tests__/auth-and-admin.test.ts[2m > [22m[2mPhase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation[2m > [22m[2m1.5. Quên mật khẩu & Đặt lại mật khẩu mới, thu hồi toàn bộ session cũ
+apps/server test: [22m[39m📧 Đã gửi email tới reset_pwd_user_1789745223822@hcmus.edu.vn (Message ID: <f00bea5e-9931-ded4-bd7c-f23ba8e48758@ssg.edu.vn>)
+apps/server test: [90mstdout[2m | src/__tests__/media-pipeline.test.ts[2m > [22m[2mPhase 4 Rigorous Verification: Media Pipeline, Sharp Animated Crop & Gateway Access Control[2m > [22m[2m6.1. BULLMQ QUEUE & WORKER THẬT: Đẩy job vào hàng đợi thật với Redis 6380, worker xử lý bất đồng bộ thành công
+apps/server test: [22m[39m[MediaWorker] Đang xử lý biến thể và tối ưu cho asset: 969c26f2-dfe7-4f5d-9398-155cb89ebb67
+apps/server test:  [32m✓[39m src/__tests__/community-and-discovery.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 986[2mms[22m[39m
+apps/server test: [90mstdout[2m | src/__tests__/media-pipeline.test.ts[2m > [22m[2mPhase 4 Rigorous Verification: Media Pipeline, Sharp Animated Crop & Gateway Access Control[2m > [22m[2m6.1. BULLMQ QUEUE & WORKER THẬT: Đẩy job vào hàng đợi thật với Redis 6380, worker xử lý bất đồng bộ thành công
+apps/server test: [22m[39m[MediaWorker] Đã xử lý thành công asset: 969c26f2-dfe7-4f5d-9398-155cb89ebb67
+apps/server test: [90mstdout[2m | src/__tests__/auth-and-admin.test.ts[2m > [22m[2mPhase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation[2m > [22m[2m3.1. Mở kết nối Socket.IO thật với session cookie hợp lệ -> kết nối thành công
+apps/server test: [22m[39m🔌 Người dùng an_nguyen_khtn đã kết nối WebSocket (Socket ID: ycOuuAdZy23IqSD0AAAA)
+apps/server test: [90mstdout[2m | src/__tests__/auth-and-admin.test.ts[2m > [22m[2mPhase 2 Rigorous Verification: Account Lifecycle, CSRF, IDOR & Socket Revocation[2m > [22m[2m3.2. Khi tài khoản bị khóa hoặc phiên bị thu hồi -> Socket đang mở nhận event session.revoked và bị ngắt kết nối
+apps/server test: [22m[39m🔌 Người dùng an_nguyen_khtn đã kết nối WebSocket (Socket ID: RfNxVgZtMfGbm8RYAAAB)
+apps/server test:  [32m✓[39m src/__tests__/auth-and-admin.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 1179[2mms[22m[39m
+apps/server test: [90mstderr[2m | src/__tests__/media-pipeline.test.ts[2m > [22m[2mPhase 4 Rigorous Verification: Media Pipeline, Sharp Animated Crop & Gateway Access Control[2m > [22m[2m6.2. XỬ LÝ THẤT BẠI KHI FILE HỎNG: File hỏng cấu trúc khiến Sharp lỗi -> Cập nhật trạng thái FAILED, giữ cách ly và trả về 400
+apps/server test: [22m[39mLỗi xử lý asset 9cdd7f96-c069-4e78-a097-83d0d8210afa: Error: Input buffer has corrupt header: webp: unable to parse image
+apps/server test:     at Sharp.metadata (file:///D:/Learning_With_HCMUS/SSG/node_modules/[4m.pnpm[24m/sharp@0.35.4_@types+node@22.20.3/node_modules/[4msharp[24m/dist/input.mjs:651:17)
+apps/server test:     at processAsset [90m(D:\Learning_With_HCMUS\SSG\apps\server\[39msrc\modules\media\media.processor.ts:15:63[90m)[39m
+apps/server test:     at [90mD:\Learning_With_HCMUS\SSG\apps\server\[39msrc\modules\media\media.routes.ts:81:9
+apps/server test:  [32m✓[39m src/__tests__/media-pipeline.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 1445[2mms[22m[39m
+apps/server test: [2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+apps/server test: [2m      Tests [22m [1m[32m59 passed[39m[22m[90m (59)[39m
+apps/server test: [2m   Start at [22m 22:26:59
+apps/server test: [2m   Duration [22m 5.33s[2m (transform 763ms, setup 0ms, collect 13.16s, tests 4.06s, environment 1ms, prepare 997ms)[22m
+apps/server test: Done

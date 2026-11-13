@@ -1,0 +1,29 @@
+{
+  "name": "ssg-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Student Place & Study Space Discovery Platform - SSG",
+  "scripts": {
+    "dev": "pnpm --filter @ssg/server dev",
+    "dev:worker": "pnpm --filter @ssg/server worker",
+    "dev:web": "pnpm --filter @ssg/web dev",
+    "build": "pnpm --filter @ssg/shared build && pnpm --filter @ssg/server build && pnpm --filter @ssg/web build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "tsx prisma/seed.ts"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/node": "^22.13.9",
+    "bcryptjs": "^3.0.3",
+    "playwright": "^1.63.0",
+    "prisma": "^6.4.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3"
+  }
+}

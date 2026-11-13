@@ -1,0 +1,29 @@
+export const Quotas = {
+  STATIC_IMAGE_MAX_BYTES: 10 * 1024 * 1024, // 10 MiB
+  ANIMATED_IMAGE_MAX_BYTES: 20 * 1024 * 1024, // 20 MiB
+  MAX_FILES_PER_UPLOAD: 10,
+  STATIC_IMAGE_MAX_PIXELS: 24_000_000, // 24 Megapixels
+  ANIMATED_MAX_FRAMES: 200,
+  ANIMATED_MAX_DURATION_SECONDS: 20,
+  ANIMATED_MAX_DECODED_PIXELS: 100_000_000, // 100 Megapixels total decoded across all frames
+  USER_DAILY_STORAGE_QUOTA_BYTES: 200 * 1024 * 1024, // 200 MiB
+  USER_DAILY_UPLOAD_FILES_LIMIT: 20,
+  REVIEW_MIN_LENGTH: 20,
+  REVIEW_MAX_LENGTH: 5000,
+  COMMENT_MAX_LENGTH: 2000,
+  MAX_BLOCKS_PER_REQUEST: 100,
+  MAX_BLOCK_NESTING_DEPTH: 4,
+  AI_USER_DAILY_REQUEST_LIMIT: 20,
+  AI_MAX_PLACES_IN_ANSWER: 3,
+  AI_ATTEMPT_TIMEOUT_MS: 60_000,
+  MAX_COMPARE_PLACES: 4,
+  MAP_MAX_VIEWPORT_MARKERS: 150,
+} as const;
+
+export const AllowedImageMimeTypes = [
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'image/gif',
+] as const;
+export type AllowedImageMimeType = (typeof AllowedImageMimeTypes)[number];

@@ -1,0 +1,43 @@
+{
+  "name": "@ssg/web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^6.1.1",
+    "@ssg/shared": "workspace:*",
+    "@tanstack/react-query": "^5.67.1",
+    "@tiptap/react": "^2.11.5",
+    "@tiptap/starter-kit": "^2.11.5",
+    "antd": "^6.6.4",
+    "axios": "^1.8.1",
+    "dayjs": "^1.11.23",
+    "framer-motion": "^14.2.0",
+    "lucide-react": "^1.57.0",
+    "maplibre-gl": "^5.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-easy-crop": "^5.2.0",
+    "react-router-dom": "^7.3.0",
+    "socket.io-client": "^4.8.1",
+    "yet-another-react-lightbox": "^3.21.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.6.1",
+    "playwright": "^1.63.0",
+    "postcss": "^8.5.30",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.0"
+  }
+}
